@@ -3,13 +3,15 @@ import { NgModule } from '@angular/core';
 
 import { AppComponent } from './app.component';
 import { VendorTestingComponent } from './vendor-testing/vendor-testing.component';
+import { SideBarHeaderComponent } from './side-bar-header/side-bar-header.component';
 
 @NgModule({
   // When you create new components, directives, and pipes in this module, put them in the declarations array.
   // Do not put any thing else in the declarations array (e.g. No NgModules, services, or model classes).
   declarations: [
     AppComponent,
-    VendorTestingComponent
+    VendorTestingComponent,
+    SideBarHeaderComponent
   ],
   // Only NgModule classes go in the imports array. Do not put any other kind of class in imports.
   imports: [
