@@ -5,6 +5,7 @@ import { HeaderComponent } from 'header/header.component';
 import { CalendarComponent } from 'calendar/calendar.component';
 import { SideBarComponent } from './src/app/core/side-bar/side-bar.component';
 import { SideBarHeaderComponent } from './src/app/core/side-bar-header/side-bar-header.component';
+import { SubHeaderComponent } from './src/app/core/sub-header/sub-header.component';
 
 @NgModule({
   imports: [
@@ -16,7 +17,8 @@ import { SideBarHeaderComponent } from './src/app/core/side-bar-header/side-bar-
     FooterComponent,
     CalendarComponent,
     SideBarComponent,
-    SideBarHeaderComponent
+    SideBarHeaderComponent,
+    SubHeaderComponent
   ]
 })
 export class CoreModule { }

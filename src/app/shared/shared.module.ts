@@ -27,6 +27,9 @@ import { ToolTipComponent } from 'overlays/tool-tip/tool-tip.component';
 import { ImageResizerComponent } from 'widgets/image-resizer/image-resizer.component';
 import { UserAvatarComponent } from 'widgets/user-avatar/user-avatar.component';
 import { ProgressBarComponent } from 'widgets/progress-bar/progress-bar.component';
+import { ZingchratDirective } from './charts/zingchrat.directive';
+import { ZingchartDirective } from './charts/zingchart.directive';
+import { LojchartDirective } from './charts/lojchart.directive';
 
 
 @NgModule({
@@ -60,7 +63,10 @@ import { ProgressBarComponent } from 'widgets/progress-bar/progress-bar.componen
     SubHeaderComponent,
     TextDropDownComponent,
     ToolTipComponent,
-    UserAvatarComponent
+    UserAvatarComponent,
+    ZingchratDirective,
+    ZingchartDirective,
+    LojchartDirective
   ],
   // Make components public so that other component templates can use them
   exports: [
