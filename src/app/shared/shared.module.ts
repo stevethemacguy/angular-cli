@@ -30,6 +30,7 @@ import { ProgressBarComponent } from 'widgets/progress-bar/progress-bar.componen
 import { ZingchratDirective } from './charts/zingchrat.directive';
 import { ZingchartDirective } from './charts/zingchart.directive';
 import { LojchartDirective } from './charts/lojchart.directive';
+import { FilterPipe } from './pipes/filter.pipe';
 
 
 @NgModule({
@@ -66,7 +67,8 @@ import { LojchartDirective } from './charts/lojchart.directive';
     UserAvatarComponent,
     ZingchratDirective,
     ZingchartDirective,
-    LojchartDirective
+    LojchartDirective,
+    FilterPipe
   ],
   // Make components public so that other component templates can use them
   exports: [
