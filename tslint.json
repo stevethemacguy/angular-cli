@@ -1,44 +1,39 @@
 {
-  "rulesDirectory": [
-    "node_modules/codelyzer"
+  "defaultSeverity": "error",
+  // The rules below extend TSLint's recommended rules.
+  // https://github.com/palantir/tslint/blob/master/src/configs/recommended.ts
+  "extends": [
+    "tslint:recommended"
   ],
+  // Any rules in jsRules ad rules will override those from the base config we are extending.
+  // See https://palantir.github.io/tslint/rules/
+  "jsRules": {},
   "rules": {
-    "arrow-return-shorthand": true,
-    "callable-types": true,
+    "arrow-parens": false,
     "class-name": true,
     "comment-format": [
-      true,
+      false,
       "check-space"
     ],
     "curly": true,
     "eofline": true,
     "forin": true,
-    "import-blacklist": [
-      true,
-      "rxjs"
-    ],
-    "import-spacing": true,
     "indent": [
       true,
       "spaces"
     ],
-    "interface-over-type-literal": true,
     "label-position": true,
+    "label-undefined": true,
+    "max-classes-per-file": [true, 2],
     "max-line-length": [
-      true,
+      false,
       140
     ],
     "member-access": false,
     "member-ordering": [
       true,
-      {
-        "order": [
-          "static-field",
-          "instance-field",
-          "static-method",
-          "instance-method"
-        ]
-      }
+      "static-before-instance",
+      "variables-before-functions"
     ],
     "no-arg": true,
     "no-bitwise": true,
@@ -51,24 +46,20 @@
       "trace"
     ],
     "no-construct": true,
+    "no-conditional-assignment": true,
     "no-debugger": true,
-    "no-duplicate-super": true,
+    "no-duplicate-key": true,
+    "no-duplicate-variable": true,
     "no-empty": false,
-    "no-empty-interface": true,
     "no-eval": true,
-    "no-inferrable-types": [
-      true,
-      "ignore-params"
-    ],
-    "no-misused-new": true,
-    "no-non-null-assertion": true,
+    "no-inferrable-types": true,
     "no-shadowed-variable": true,
     "no-string-literal": false,
-    "no-string-throw": true,
     "no-switch-case-fall-through": true,
-    "no-trailing-whitespace": true,
-    "no-unnecessary-initializer": true,
+    "no-trailing-whitespace": false,
     "no-unused-expression": true,
+    "no-unused-variable": true,
+    "no-unreachable": true,
     "no-use-before-declare": true,
     "no-var-keyword": true,
     "object-literal-sort-keys": false,
@@ -76,19 +67,26 @@
       true,
       "check-open-brace",
       "check-catch",
-      "check-else",
+      //"check-else", // Allow for if/else on a second line, but require open brackets on the same line (i.e. stroustrup style)
       "check-whitespace"
     ],
-    "prefer-const": true,
+    "ordered-imports": false,
+    "prefer-const": false,
+    "prefer-for-of": false,
     "quotemark": [
       true,
-      "single"
+      "single",
+      "avoid-escape"
     ],
+    "rxjs-no-add": { "severity": "error" }, // See https://blog.angularindepth.com/rxjs-understanding-lettable-operators-fe74dda186d3
+    "rxjs-no-operator": { "severity": "error" }, // See https://blog.angularindepth.com/rxjs-understanding-lettable-operators-fe74dda186d3
+    "rxjs-no-patched": { "severity": "error" }, // See https://blog.angularindepth.com/rxjs-understanding-lettable-operators-fe74dda186d3
+    "rxjs-no-wholesale": { "severity": "error" }, // See https://blog.angularindepth.com/rxjs-understanding-lettable-operators-fe74dda186d3
     "radix": true,
     "semicolon": [
-      true,
       "always"
     ],
+    "trailing-comma": false,
     "triple-equals": [
       true,
       "allow-null-check"
@@ -103,8 +101,6 @@
         "variable-declaration": "nospace"
       }
     ],
-    "typeof-compare": true,
-    "unified-signatures": true,
     "variable-name": false,
     "whitespace": [
       true,
@@ -113,30 +109,8 @@
       "check-operator",
       "check-separator",
       "check-type"
-    ],
-    "directive-selector": [
-      true,
-      "attribute",
-      "app",
-      "camelCase"
-    ],
-    "component-selector": [
-      true,
-      "element",
-      "app",
-      "kebab-case"
-    ],
-    "use-input-property-decorator": true,
-    "use-output-property-decorator": true,
-    "use-host-property-decorator": true,
-    "no-input-rename": true,
-    "no-output-rename": true,
-    "use-life-cycle-interface": true,
-    "use-pipe-transform-interface": true,
-    "component-class-suffix": true,
-    "directive-class-suffix": true,
-    "no-access-missing-member": true,
-    "templates-use-public": true,
-    "invoke-injectable": true
-  }
+    ]
+  },
+  // A list of relative or absolute paths to directories that contain custom rules.
+  "rulesDirectory": []
 }
