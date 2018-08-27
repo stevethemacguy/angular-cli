@@ -4,7 +4,6 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 
 // Shared Components
-import { ZingchartDirective } from './charts/zingchart.directive';
 import { LojchartDirective } from './charts/lojchart.directive';
 import { FilterPipe } from './pipes/filter.pipe';
 import { BaseDropDownComponent } from './form-inputs/base-drop-down/base-drop-down.component';
@@ -13,7 +12,6 @@ import { BasePanelComponent } from './layout/base-panel/base-panel.component';
 import { UserAvatarComponent } from './widgets/user-avatar/user-avatar.component';
 import { ToolTipComponent } from './overlays/tool-tip/tool-tip.component';
 import { TextDropDownComponent } from './form-inputs/text-drop-down/text-drop-down.component';
-import { SideBarComponent } from '../core/side-bar/side-bar.component';
 import { RowPanelComponent } from './layout/row-panel/row-panel.component';
 import { ProgressBarComponent } from './widgets/progress-bar/progress-bar.component';
 import { PopOverComponent } from './overlays/pop-over/pop-over.component';
@@ -28,7 +26,6 @@ import { CustomDropDownComponent } from './form-inputs/custom-drop-down/custom-d
 import { CurrencyInputComponent } from './form-inputs/currency-input/currency-input.component';
 import { ChartPanelComponent } from './charts/chart-panel/chart-panel.component';
 import { ChartComponent } from './charts/chart/chart.component';
-import { SubHeaderComponent } from './layout/sub-header/sub-header.component';
 
 @NgModule({
   // Importing a module makes all of its public components, directives, and pipes visible to the component templates in THIS module
@@ -56,8 +53,6 @@ import { SubHeaderComponent } from './layout/sub-header/sub-header.component';
     PopOverComponent,
     ProgressBarComponent,
     RowPanelComponent,
-    SideBarComponent,
-    SubHeaderComponent,
     TextDropDownComponent,
     ToolTipComponent,
     UserAvatarComponent,
@@ -85,8 +80,6 @@ import { SubHeaderComponent } from './layout/sub-header/sub-header.component';
     PopOverComponent,
     ProgressBarComponent,
     RowPanelComponent,
-    SideBarComponent,
-    SubHeaderComponent,
     TextDropDownComponent,
     ToolTipComponent,
     UserAvatarComponent

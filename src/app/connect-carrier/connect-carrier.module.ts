@@ -7,12 +7,11 @@ import { DemoStepThreeComponent } from './demo-step-three/demo-step-three.compon
 import { StepThreeComponent } from './step-three/step-three.component';
 import { CompletedComponent } from './completed/completed.component';
 import { ConnectCarrierHeaderComponent } from './connect-carrier-header/connect-carrier-header.component';
-import { ConnectCarrierComponent } from './connect-carrier-routing.component';
 
 @NgModule({
   imports: [
     CommonModule
   ],
-  declarations: [ConnectCarrierComponent, StepOneComponent, StepTwoComponent, DemoStepTwoComponent, DemoStepThreeComponent, StepThreeComponent, CompletedComponent, ConnectCarrierHeaderComponent]
+  declarations: [StepOneComponent, StepTwoComponent, DemoStepTwoComponent, DemoStepThreeComponent, StepThreeComponent, CompletedComponent, ConnectCarrierHeaderComponent]
 })
 export class ConnectCarrierModule { }

@@ -2,7 +2,6 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { AppComponent } from './app.component';
 import { VendorTestingComponent } from './vendor-testing/vendor-testing.component';
-import { SideBarHeaderComponent } from './core/side-bar-header/side-bar-header.component';
 import { HomeComponent } from './home/home.component';
 import { AppRoutingModule } from './app-routing.module';
 import { HttpClientModule } from '@angular/common/http';
@@ -14,7 +13,6 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
   declarations: [
     AppComponent,
     VendorTestingComponent,
-    SideBarHeaderComponent,
     HomeComponent
   ],
   // Only NgModule classes go in the imports array. Do not put any other kind of class in imports.
