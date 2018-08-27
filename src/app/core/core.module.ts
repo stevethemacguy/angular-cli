@@ -1,11 +1,9 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FooterComponent } from 'footer/footer.component';
-import { HeaderComponent } from 'header/header.component';
-import { CalendarComponent } from 'calendar/calendar.component';
-import { SideBarComponent } from './src/app/core/side-bar/side-bar.component';
-import { SideBarHeaderComponent } from './src/app/core/side-bar-header/side-bar-header.component';
-import { SubHeaderComponent } from './src/app/core/sub-header/sub-header.component';
+import { HeaderComponent } from './header/header.component';
+import { FooterComponent } from './footer/footer.component';
+import { SideBarComponent } from './side-bar/side-bar.component';
+import { SideBarHeaderComponent } from './side-bar-header/side-bar-header.component';
 
 @NgModule({
   imports: [
@@ -15,10 +13,8 @@ import { SubHeaderComponent } from './src/app/core/sub-header/sub-header.compone
   declarations: [
     HeaderComponent,
     FooterComponent,
-    CalendarComponent,
     SideBarComponent,
     SideBarHeaderComponent,
-    SubHeaderComponent
   ]
 })
 export class CoreModule { }

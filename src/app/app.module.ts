@@ -1,11 +1,9 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-
 import { AppComponent } from './app.component';
 import { VendorTestingComponent } from './vendor-testing/vendor-testing.component';
-import { SideBarHeaderComponent } from './side-bar-header/side-bar-header.component';
-import { HomeComponent } from './src/app/home/home.component';
-import { TestComponent } from './test/test.component';
+import { SideBarHeaderComponent } from './core/side-bar-header/side-bar-header.component';
+import { HomeComponent } from './home/home.component';
 
 @NgModule({
   // When you create new components, directives, and pipes in this module, put them in the declarations array.
@@ -14,8 +12,7 @@ import { TestComponent } from './test/test.component';
     AppComponent,
     VendorTestingComponent,
     SideBarHeaderComponent,
-    HomeComponent,
-    TestComponent
+    HomeComponent
   ],
   // Only NgModule classes go in the imports array. Do not put any other kind of class in imports.
   imports: [
