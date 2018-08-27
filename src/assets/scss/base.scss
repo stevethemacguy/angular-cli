@@ -6,10 +6,10 @@
  */
 
 // Vendor Sass. Is this sass being duplicated? Should we import this in app.component.ts instead?
-@import 'vendor/foundation/lojistic-foundation';
-@import 'vendor/ng-bootstrap/bootstrap-modal';
-@import 'vendor/hamburger-menu/loj-hamburger';
-@import 'vendor/ngx-toastr/ngx-toastr';
+//@import 'vendor/foundation/lojistic-foundation';
+//@import 'vendor/ng-bootstrap/bootstrap-modal';
+//@import 'vendor/hamburger-menu/loj-hamburger';
+//@import 'vendor/ngx-toastr/ngx-toastr';
 
 // Calendar specific. Bootstrap-calendar is a custom (i.e. stripped-down) version of bootstrap
 // that is used by the Calendar only. The calendar scss files should be imported separately from other vendor scss.
@@ -26,11 +26,11 @@
 
 // Global Sass files
 // Import order is important. Insert new imports after the last import
-@import 'fonts';
+//@import 'fonts';
 @import 'variables'; // Includes media queries
 //@import 'mixins';
 @import 'global';
-@import 'base-modal';
+//@import 'base-modal';
 @import 'buttons';
 @import 'forms';
 
