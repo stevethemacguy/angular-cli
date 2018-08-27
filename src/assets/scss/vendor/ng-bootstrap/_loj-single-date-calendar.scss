@@ -1,0 +1,43 @@
+/**
+ * Author: Steven Dunn
+ * Date Created: December 13, 2017
+ */
+
+// All NG-calendar overrides must be in this file. You cannot override the ng-calendar from single-date-calendar component.
+@import "../../variables";
+
+loj-single-date-calendar {
+  .ng-calendar {
+    margin-top: 0; //compensate for the header having a height of 4.25rem instead of 4rem
+  }
+
+  ngb-datepicker-navigation-select {
+    //Override inline styling
+    width: unset !important;
+  }
+
+  .ngb-dp-day, .ngb-dp-weekday {
+    // All em sizes are determined by the font-size of .calendar-container. See calendar.component.scss
+    //height: 7vh;
+    //width: 13vw;
+    //position: relative;
+  }
+
+  .ngb-dp-months {
+    //To show two calendars vertically on mobile
+    flex-direction: column;
+  }
+
+  // Ng-datepicker hides month names when displayMonths is set to 1.
+  // Since we only want to show one month on a single-date-calendar,
+  // We set displayMonths to 2, but then hide the second month in CSS
+  .ngb-dp-month:last-child {
+    display: none;
+  }
+
+  // Controls spacing between the calendars
+  //To show two calendars vertically on mobile
+  .ml-3 {
+    margin-left: 0
+  }
+}

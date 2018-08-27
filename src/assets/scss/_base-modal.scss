@@ -1,0 +1,184 @@
+// Note: Loj-modals do not use the default bootstrap back-drop. Instead, we create our own backdrop to allow for
+// greater control and to ensure the model-content is always centered with Flexbox.
+
+.loj-bootstrap-modal {
+  width: 100vw; // Required to guarantee the modal stretches to 100% width of the viewport (including the scrollbar area in Chrome)
+  height: 100vh;
+  left: 0;
+  // Use .below-header if the modal needs to appear below the header instead of covering the entire screen
+  &.below-header {
+    top: #{$header-height};
+    height: calc(100vh - #{$header-height});
+
+    .loj-modal-backdrop {
+      top: #{$header-height};
+      height: calc(100vh - #{$header-height});
+    }
+  }
+  // Use .above-footer if the modal needs to appear above the footer (but over the header)
+  // Note: this puts the entire modal (including any backdrop) above the footer. If you only
+  // want the modal-content to be above the footer, but want a backdrop. Use .above-footer on .loj-modal instead.
+  &.above-footer {
+    top: 0;
+    // 100vh doesn't seem to work on ios (at least when toggling a modal open/closed), so use 100% instead on mobile.
+    height: calc(100% - #{$footer-height});
+
+    @media #{$medium} {
+      height: calc(100vh - #{$footer-height});
+    }
+
+    .loj-modal-backdrop {
+      top: 0;
+      height: calc(100vh - #{$footer-height});
+    }
+  }
+}
+
+// Use flex-center to vertically and horizontally center the contents inside of a .loj-modal.
+// Do NOT use this to center the modal itself on screen. This is already handled by .modal-content.
+.flex-center {
+  @include flex-center();
+  &.vertical {
+    flex-direction: column;
+    //Shift items to the top at really small heights (e.g mobile landscape)
+    @media (max-height: $foundation-medium) {
+      justify-content: flex-start;
+    }
+  }
+}
+
+// Convenience class to start the content at the top of the flex-container
+.flex-start {
+  justify-content: flex-start;
+}
+
+
+//Base styling for inner content area of modal. Includes close 'X' button
+.loj-modal {
+  background-color: $white;
+  color: $grey-primary;
+  font-family: $regular;
+  //line-height: 1.78; // Why is this here?
+  //letter-spacing: 0.6px; // Why is this here?
+  position: relative;
+  overflow: auto;
+  // Loj-modal MUST have a set height and width. This can be %, but it should be set to something
+  // No backdrop is visible when height and width are 100%, so use a smaller % if you want the modal centered with a backdrop.
+  height: 100%;
+  width: 100%;
+  padding: 20px;
+  @media #{$medium} {
+    padding: 40px;
+  }
+
+  // Enable iOS elastic scrolling. Note: You may need extra margin at the bottom of modals to use this.
+  //overflow-y: scroll; /* has to be scroll, not auto */
+  //-webkit-overflow-scrolling: touch;
+
+  // On small viewports, place the modal content above the footer. The backdrop will still cover the footer.
+  // If you want the entire modal (including the backdrop) to appear above the footer, use .above-footer when creating
+  // the modal instead (see .loj-bootstrap-modal above)
+  &.above-footer {
+    left: 0;
+    top: 0;
+    height: calc(100% - #{$footer-height});
+    position: fixed;
+    // Fix for IE
+    @media #{$medium} {
+        position: relative;
+    }
+  }
+
+  @media #{$medium} {
+    overflow: auto;
+    -webkit-overflow-scrolling: auto;
+  }
+
+  $apply-button-width: 58%;
+
+  .apply-button {
+    width: $apply-button-width;
+    margin-right: 12px;
+  }
+
+  .cancel-button {
+    width: calc(100% - #{$apply-button-width} - 12px); //Account for the margin
+  }
+}
+
+.modal-close-btn {
+  text-decoration: none;
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  opacity: 0.9;
+  color: $grey-secondary;
+  font-size: 20px;
+  height: 24px;
+  width: 24px;
+  background: url(../../assets/images/icons/close-x.png) no-repeat center;
+  z-index: 1;
+}
+
+.modal-content {
+  height: 100%;
+  width: 100vw; // Required to guarantee the modal stretches to 100% width of the viewport (including the scrollbar area in Chrome)
+  font-family: $regular;
+  overflow: hidden;
+
+  // Centers modals vertically and horizontally within a .loj-backdrop.
+  // If you want a modal to be off-centered, then override the flex-box centering in your component scss.
+  @include flex-center();
+}
+
+// Use loj-modal-backdrop to give the modal a back-drop area that can close the modal when clicked
+.loj-modal-backdrop {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background-color: rgba(0, 0, 0, 0.6);
+  width: 100%;
+  height: 100%; // Caution: Do not use vh here. Some models sit below the header, so 100vh will not work.
+
+  // Make the background invisible, but still use it to close the modal when clicked.
+  &.transparent{
+    background-color: rgba(0, 0, 0, 0);
+  }
+
+  // Use with full-screen modals that require a full-screen white background
+  // Todo: This might be redundant if .loj-modal always uses a width and height of 100% for full screen modals.
+  &.full-screen-modal {
+    background: $white;
+  }
+}
+
+.modal-dialog {
+  width: 100%;
+  height: 100%;
+  padding: 0;
+  margin: 0;
+  position: relative;
+}
+
+.modal-backdrop {
+  position: relative;
+}
+
+.loj-modal-content-container {
+  text-align: center;
+}
+
+.loj-modal-title {
+  font-size: $font-size-22;
+  font-family: $regular;
+  font-weight: bold;
+  line-height: 1.36;
+  letter-spacing: 0.7px;
+  color: $light-grey;
+}
+
+.loj-modal-instructions {
+  color: $grey-primary;
+}

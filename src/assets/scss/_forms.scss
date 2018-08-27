@@ -1,0 +1,398 @@
+/**
+ * Author: Steven Dunn
+ * Date Created: August 31, 2017
+ *
+ */
+
+
+// Disable Clear 'X' overlay in IE and Edge
+::-ms-clear {
+  display: none;
+}
+
+// Basic Inputs
+.input-container {
+  position: relative;
+  height: 36px;
+  width: 100%;
+
+  &.checkbox {
+    height: 22px;
+    > input {
+      width: auto;
+    }
+  }
+
+  &.disabled {
+    pointer-events: none;
+    opacity: .5;
+  }
+
+  &:focus {
+    outline: none;
+  }
+
+  &.material {
+    height: 46px;
+    > input {
+      padding: 24px 0 4px 7px;
+      display: inline-block;
+      width: 100%;
+      height: 100%;
+      // REQUIRED. On iOS, any font lower than 16px will cause the phone to zoom into the input. 15 still looks ok with zoom
+      // Caution: You can not use em or rem units in this case.
+      font-size: 16px;
+
+      // Active State. Keep the label above the input when the input is focused or there is text in place.
+      // Webkit-autofill is experimental, but detects when text has been auto-filled by browser.
+      // Angular's form control doesn't normally detect auto-filled inputs, so the input value is still empty.
+      // Alternatively, we could also try detecting input changes after the page loads
+      &:focus, &.empty, &:-webkit-autofill {
+        outline: none;
+
+        // Note: The sibling selector doesn't work in FF. The .empty class has to be added directly to the label.
+        & ~ label {
+          top: 8px;
+          font-size: $font-size-10;
+        }
+      }
+      // Error state. Don't show error borders unless the input is both required and has been touched
+      //&.ng-invalid.ng-touched {
+      //  ~ .bar:before, ~ .bar:after {
+      //    background-color: $loj-red;
+      //  }
+      //}
+    }
+
+    > label {
+      position: absolute;
+      color: $grey-primary;
+      pointer-events: none;
+      top: 14px;
+      left: 7px;
+      margin: 0;
+      transition: 0.2s ease all;
+      -moz-transition: 0.2s ease all;
+      -webkit-transition: 0.2s ease all;
+      font-size: $font-size-14;
+      @media #{$medium} {
+        top: 15px;
+        font-size: $font-size-18;
+      }
+
+      // Empty and focused inputs both shift the label to the top of th einput.
+      // Focused is manually controlled in the login component and is used by FF and IE11.
+      &.empty, &.focused {
+        top: 8px;
+        font-size: $font-size-10;
+      }
+    }
+
+    // The two bars that make up the bottom border of the input
+    //.bar {
+    //  position: relative;
+    //  display: block;
+    //  width: 100%;
+    //}
+    //
+    //// Underline Animation
+    //.bar:before, .bar:after {
+    //  content: '';
+    //  height: 1px;
+    //  width: 0;
+    //  bottom: -1px;
+    //  position: absolute;
+    //  background-color: $loj-blue;
+    //  transition: 0.2s ease all;
+    //}
+    //
+    //// The bars start at the center and move out
+    //.bar:before {
+    //  left:50%;
+    //}
+    //
+    //// The bars start at the center and move out
+    //.bar:after {
+    //  right:50%;
+    //}
+    //
+    ///* active state */
+    //input:focus ~ .bar:before, input:focus ~ .bar:after {
+    //  width:50%;
+    //}
+  }
+
+}
+
+//loj Form inputs (e.g. <form class="loj-form")
+.loj-form {
+  .error-message {
+    color: $loj-red;
+    padding-top: 3px;
+    font-family: PTSans-Italic, serif;
+    position: absolute;
+    font-size: $font-size-10;
+  }
+
+  .form-group {
+    margin-bottom: 34px;
+  }
+
+  input {
+    padding: 7px;
+  }
+
+  input, .fake-input {
+    //border-radius: 2px;
+    border: 1px solid $grey-secondary;
+    background-color: $white;
+    color: $black;
+    width: 100%;
+
+    &:invalid {
+      box-shadow: none; // Disabled default red border
+    }
+
+    // All inputs except checkboxes and text-area
+    &:not([type=textarea], [type=checkbox]) {
+      background-color: $white;
+      //Remove iOS border shadow
+      -webkit-appearance: none;
+      -moz-appearance: none;
+      appearance: none;
+      border-radius: 0;
+    }
+
+    //Don't show error borders unless the input is either
+    //  Invalid and the use has typed something
+    //  Invalid and the user left the input
+    &.ng-invalid.ng-touched {
+      border: 1px solid $loj-red;
+    }
+
+    &:focus {
+      //border-color: $loj-blue;
+      border-color: $grey-primary;
+      color: $black;
+      outline: none;
+    }
+
+    &::-webkit-input-placeholder { /* Chrome/Opera/Safari */
+      font-size: $font-size-14;
+      @media #{$medium} {
+        font-size: $font-size-16;
+      }
+    }
+    &::-moz-placeholder { /* Firefox 19+ */
+      font-size: $font-size-14;
+      @media #{$medium} {
+        font-size: $font-size-16;
+      }
+    }
+    &:-ms-input-placeholder { /* IE 10+ */
+      font-size: $font-size-14;
+      @media #{$medium} {
+        font-size: $font-size-16;
+      }
+    }
+    &:-moz-placeholder { /* Firefox 18- */
+      font-size: $font-size-14;
+      @media #{$medium} {
+        font-size: $font-size-16;
+      }
+    }
+  }
+
+  // All inputs except the "fake inputs"
+  input:not([type=checkbox]) {
+      height: 100%;
+  }
+
+  label, .fake-label {
+    color: $grey-primary;
+    margin-bottom: 12px;
+    position: absolute;
+    top: -15px;
+    left: 0;
+  }
+
+  // Checkbox Styling
+  .checkbox > label{
+    @include disable-user-select;
+    cursor: pointer;
+    position: relative;
+    top: 0;
+    left: 0;
+    margin-left: 3px;
+  }
+
+  //Labels for required inputs
+  label.required:after {
+    content: ' *';
+    color: red;
+  }
+
+  .toggle-switch {
+    position: relative;
+    top: -3px;
+    // width: 76px; //Original dimensions
+    // height: 33px;//Original dimensions
+    width: 76px;
+    height: 33px;
+    border-radius: 22px;
+    border: solid 1px $grey-secondary;
+    margin-left: 3px;
+    cursor: pointer;
+    font-family: $regular;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+  }
+
+  .switch-circle {
+    width: 25px;
+    height: 25px;
+    background: $grey-secondary;
+    border-radius: 50%;
+    position: relative;
+    display: inline-block;
+    margin-left: 1px;
+
+    &.active {
+      transform: translate3d(28px, 0, 0);
+      background: $loj-green;
+    }
+  }
+
+  .switch-text {
+    position: relative;
+    top: -5px;
+    margin-left: 7px;
+  }
+
+  .off-text {
+    opacity: .5; //Redline is .7
+  }
+
+  .on-text {
+    margin-left: 11px;
+    margin-right: 7px;
+  }
+
+  .prime-dropdown {
+    border-radius: 0;
+
+    // Container element
+    &:focus, .ui-state-focus {
+      outline: none;
+      box-shadow: none;
+    }
+
+    .ui-dropdown {
+      height: 32px;
+      width: 100%;
+      border-radius: 0;
+      border-color: $grey-secondary;
+
+      &:focus {
+        outline: none;
+      }
+      &:hover {
+        background: none;
+      }
+      &:not(.ui-state-disabled):hover {
+        border-color: $grey-secondary;
+      }
+      &:not(.ui-state-disabled).ui-dropdown-open {
+        border-color: $grey-secondary;
+      }
+    }
+
+    // Element to display label of selected option
+    .ui-dropdown-label {
+      //color: $black;
+      margin-bottom: 0;
+      position: static;
+      height: 100%;
+      padding-left: 10px;
+    }
+    // Icon element
+    .ui-dropdown-trigger {
+      border: none;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 18px;
+      color: $black;
+      > .ui-clickable {
+        margin: 0;
+      }
+    }
+
+    .ui-inputtext:focus {
+      box-shadow: none;
+      outline: none;
+      border: none;
+    }
+
+    //Override box-shadow
+    .ui-shadow {
+      box-shadow: none;
+      -webkit-box-shadow: none;
+    }
+
+    // Icon element
+    .ui-dropdown-panel {
+      width: 160px;
+      border-radius: 0;
+      margin-left: -1px;
+    }
+
+    // Wrapper element of items list
+    .ui-dropdown-items-wrapper {
+
+    }
+
+    // List element of items
+    .ui-dropdown-items {
+      padding: 0;
+      border-radius: 0;
+    }
+
+    // An item in the list
+    .ui-dropdown-item {
+      padding: 3px;
+      padding-left: 10px;
+      margin: 0;
+      border-radius: 0;
+      &:hover {
+        background: $loj-blue;
+        color: $white;
+      }
+
+      &.ui-state-highlight {
+        background-color: $blue-secondary;
+      }
+
+      &.ui-state-highlight:hover {
+        background: $loj-blue;
+      }
+    }
+
+    // Container of filter input
+    .ui-dropdown-filter-container {
+
+    }
+
+    // Filter element
+    .ui-dropdown-filter {
+
+    }
+
+    // Container element when overlay is visible
+    .ui-dropdown-open {
+
+    }
+  }
+
+}

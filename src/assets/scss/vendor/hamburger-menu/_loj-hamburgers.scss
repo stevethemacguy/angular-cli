@@ -1,0 +1,141 @@
+@charset "UTF-8";
+/*!
+ * Hamburgers
+ * @description Tasty CSS-animated hamburgers
+ * @author Jonathan Suh @jonsuh
+ * @site https://jonsuh.com/hamburgers
+ * @link https://github.com/jonsuh/hamburgers
+ */
+
+/**
+ * Comments: Steven Dunn
+ * Date Created: September 20, 2017
+ *
+ * Imports base hamburger menu settings (authored by Jonathan Suh).
+ * DO NOT MODIFY the original settings. Modify the "Lojistic Custom Settings" and "Hamburger types" sections only
+ */
+
+// Original Settings (DO NOT MODIFY)
+// ==================================================
+$hamburger-padding-x                       : 15px !default;
+$hamburger-padding-y                       : 15px !default;
+$hamburger-layer-width                     : 40px !default;
+$hamburger-layer-height                    : 4px !default;
+$hamburger-layer-spacing                   : 6px !default;
+$hamburger-layer-color                     : #000 !default;
+$hamburger-layer-border-radius             : 4px !default;
+$hamburger-hover-opacity                   : 0.7 !default;
+$hamburger-hover-transition-duration       : 0.15s !default;
+$hamburger-hover-transition-timing-function: linear !default;
+
+// To use CSS filters as the hover effect instead of opacity,
+// set $hamburger-hover-use-filter as true and
+// change the value of $hamburger-hover-filter accordingly.
+$hamburger-hover-use-filter: false !default;
+$hamburger-hover-filter    : opacity(50%) !default;
+
+// Types (Remove or comment out what you don’t need). (OK TO MODIFY).
+// "-r" is the reverse version.
+// ==================================================
+$hamburger-types: (
+  //3dx,
+  //3dx-r,
+  3dy,
+  //3dy-r,
+  //3dxy,
+  //3dxy-r,
+  //arrow,
+  //arrow-r,
+  //arrowalt,
+  //arrowalt-r,
+  //arrowturn,
+  //arrowturn-r,
+  //boring,
+  //collapse,
+  //collapse-r,
+  //elastic,
+  //elastic-r,
+  //emphatic,
+  //emphatic-r,
+  //minus,
+  //slider,
+  //slider-r,
+  //spin,
+  //spin-r,
+  //spring,
+  //spring-r,
+  //stand,
+  //stand-r,
+  //squeeze,
+  //vortex,
+  //vortex-r
+) !default;//
+
+// Lojistic Custom Settings (OK TO MODIFY)
+// ==================================================
+$hamburger-padding-x                       : 3px;
+$hamburger-padding-y                       : 3px;
+$hamburger-layer-width                     : 24px;   // Width of the bars
+$hamburger-layer-height                    : 2px;    // Height of the bars
+$hamburger-layer-spacing                   : 5px;    // Space between bars
+$hamburger-layer-color                     : #FFF;
+$hamburger-layer-border-radius             : 3px;
+
+// Technically, mobile should not even have :hover specified, but we can't change that without digging into the hamburger code
+$hamburger-hover-opacity                   : 1;
+//$hamburger-hover-transition-duration       : 0.15s !default;
+//$hamburger-hover-transition-timing-function: linear !default;
+
+// Base Hamburger (DO NOT MODIFY)
+// ==================================================
+@import "~hamburgers/_sass/hamburgers/base";
+
+// Hamburger types (DO NOT MODIFY)
+// ==================================================
+@import "~hamburgers/_sass/hamburgers/types/3dx";
+@import "~hamburgers/_sass/hamburgers/types/3dx-r";
+@import  "~hamburgers/_sass/hamburgers/types/3dy";
+@import  "~hamburgers/_sass/hamburgers/types/3dy-r";
+@import "~hamburgers/_sass/hamburgers/types/3dxy";
+@import "~hamburgers/_sass/hamburgers/types/3dxy-r";
+@import "~hamburgers/_sass/hamburgers/types/arrow";
+@import "~hamburgers/_sass/hamburgers/types/arrow-r";
+@import "~hamburgers/_sass/hamburgers/types/arrowalt";
+@import "~hamburgers/_sass/hamburgers/types/arrowalt-r";
+@import "~hamburgers/_sass/hamburgers/types/arrowturn";
+@import "~hamburgers/_sass/hamburgers/types/arrowturn-r";
+@import "~hamburgers/_sass/hamburgers/types/boring";
+@import "~hamburgers/_sass/hamburgers/types/collapse";
+@import "~hamburgers/_sass/hamburgers/types/collapse-r";
+@import "~hamburgers/_sass/hamburgers/types/elastic";
+@import "~hamburgers/_sass/hamburgers/types/elastic-r";
+@import "~hamburgers/_sass/hamburgers/types/emphatic";
+@import "~hamburgers/_sass/hamburgers/types/emphatic-r";
+@import "~hamburgers/_sass/hamburgers/types/minus";
+@import "~hamburgers/_sass/hamburgers/types/slider";
+@import "~hamburgers/_sass/hamburgers/types/slider-r";
+@import "~hamburgers/_sass/hamburgers/types/spin";
+@import "~hamburgers/_sass/hamburgers/types/spin-r";
+@import "~hamburgers/_sass/hamburgers/types/spring";
+@import "~hamburgers/_sass/hamburgers/types/spring-r";
+@import "~hamburgers/_sass/hamburgers/types/stand";
+@import "~hamburgers/_sass/hamburgers/types/stand-r";
+@import "~hamburgers/_sass/hamburgers/types/squeeze";
+@import "~hamburgers/_sass/hamburgers/types/vortex";
+@import "~hamburgers/_sass/hamburgers/types/vortex-r";
+
+// ==================================================
+// Cooking up additional types:
+//
+// The Sass for each hamburger type should be nested
+// inside an @if directive to check whether or not
+// it exists in $hamburger-types so only the CSS for
+// included types are generated.
+//
+// e.g. hamburgers/types/_new-type.scss
+//
+// @if index($hamburger-types, new-type) {
+//   .hamburger--new-type {
+//     ...
+//   }
+// }

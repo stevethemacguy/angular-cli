@@ -1,0 +1,144 @@
+// Global styling for the entire application
+
+html {
+  // Removes the grey background color when clicking on mobile. Only required if FastClick is not used
+  -webkit-tap-highlight-color: rgba(0,0,0,0);
+}
+
+body {
+  color: $grey-primary;
+  font-family: 'Proxima Nova Regular', sans-serif;
+  position: relative;
+}
+
+// Override normalize's opinionated line-height
+// Line height controls the vertical space between lines of text when the text spans multiple rows.
+// Line Height: 1 means there is no extra space added to the font-size. This makes it easier to match padding/margins with with Zeplin Design Redlines
+button, input, optgroup, select, textarea {
+  line-height: 1;
+}
+
+//Reset margins so they don't have to be manually removed later
+h1, h2, h3, p {
+  margin: 0;
+}
+
+// Prevent outer scrolling when a modal is open.
+// Caution: There are side effects when hiding the overflow (while scrolled down on the page). See below for details
+.modal-open {
+
+  //// Method 1
+  // Trade-offs
+  // Good: Hides all scrollbars and prevents weird bug where you can still scroll the rest of the page behind the modal
+  // Bad: It moves the main-content scroll bar back to the top of the page .
+  //      It also brings up the address bar and iOS footer, which are normally hidden when you're scrolling.
+  //      This can feel really weird.
+
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
+  position: fixed; // This is REQUIRED on iOS
+
+  //// End Method 1
+
+  //// Method 2
+  // Trade-offs
+  // Good: Maintains scroll position. When scrolling, the iOS address bar and footer will NOT be triggered
+  //       (unless the footer's height is too small, in which case, tapping low on the phone will trigger the iOS chrome anyway)
+  // Bad: Scroll bars still visible and you can scroll within the modal. Scrolling within the modal is still allowed.
+  .main-content {
+    opacity: 0;
+  }
+
+  // Required on all account routes to ensure that content behind the modal is still shown.
+  .show-main-content {
+    opacity: 1;
+  }
+  //// End Method 2
+
+  // Update (June 25, 2018): Can no longer reproduce, but my reproduction steps might be wrong. Leave this code in place just in case.
+  //
+  // Hack to fix a bug where the header would appear at the bottom of the page when a modal is displayed
+  // To reproduce the issue, scroll to the very bottom of the page and then click on the mobile calendar.
+  // So far, we also hide the footer when we show modals, so this is okay.
+  // loj-side-bar-header{
+  //  display: none;
+  //}
+}
+
+// Enabled momentum scrolling. See https://css-tricks.com/snippets/css/momentum-scrolling-on-ios-overflow-elements/
+// Caution: If scrolling is broken on iOS, it's most likely because an element has overflow: auto or scroll.
+// Try using "overflow: unset" before using this class (or only set overflow to auto/scroll on larger viewports).
+.smooth-scroll {
+  @media #{$mobile-only} {
+    overflow-y: scroll;
+    -webkit-overflow-scrolling: touch; // This property is not well supported and has strange side effects (even on iOS).
+  }
+}
+
+//::-moz-selection {
+//  background: lighten($loj-blue, 20%);
+//  color: $dark-grey;
+//}
+//
+//::selection {
+//  background: lighten($loj-blue, 20%);
+//  color: $dark-grey;
+//}
+
+.disabled, [disabled] {
+  @include disable-user-select;
+  pointer-events: none;
+  opacity: .5;
+
+  .ui-dropdown-trigger{
+    opacity: .5;
+  }
+}
+
+.disabled-parent {
+  // Note: Pointer-events overrides cursor: not-allowed, so it needs to be put on the parent of the disabled element
+  cursor: not-allowed;
+  > ng-select {
+    pointer-events: none;
+    opacity: .5;
+  }
+}
+
+// Angular used the hidden property to hide/show elements, but without !important, it is too easily overridden by the display property.
+[hidden] {
+  display: none !important;
+}
+
+.invisible {
+  opacity: 0;
+  visibility: hidden;
+}
+
+.loading-spinner {
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  z-index: 10;
+  top: 0;
+  left: 0;
+  background: url('../../assets/images/loading-spinner.gif') center center no-repeat;
+}
+
+.align-self-start {
+  align-self: flex-start;
+}
+
+.align-self-center {
+  align-self: center;
+}
+
+.align-self-end {
+  align-self: flex-end;
+}
+
+svg {
+  // Removes extra space that normally appears below SVGs since they are inline-block elements
+  // See https://stackoverflow.com/questions/24626908/how-to-get-rid-of-extra-space-below-svg-in-div-element
+  display: block;
+}

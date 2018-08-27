@@ -1,0 +1,75 @@
+/**
+ * Author: Steven Dunn
+ * Date Created: August 16, 2017
+ * 
+ * Re-usable mixins and classes
+ */
+
+//// Form Inputs \\\\
+
+// Use on text elements (e.g. input, span) to add an ellipsis when the text can no longer fit within the parent container.
+@mixin ellipsis {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+// IE Flex-box Fix. Chrome, FF, Safari, and Edge only require flex-basis
+// Max-width is required by IE.
+//
+// Sources:
+//  https://stackoverflow.com/questions/19138107/ie11-flexbox-preventing-text-wrapping
+//  https://stackoverflow.com/questions/35111090/why-ie11-doesnt-wrap-the-text-in-flexbox
+//  https://github.com/philipwalton/flexbugs/issues/3
+@mixin flex-basis($flex-basis) {
+  flex-basis: $flex-basis;
+  max-width: $flex-basis;
+
+  // Alternate version. If max-width isn't working, you can also use width with flex-basis auto.
+  // flex-basis: auto;
+  // width: $flex-basis;
+}
+
+// Creates a basic border using the lojistic grey
+// Caution: Do NOT use basic-border with boxes and panels!! Use the panel-border mixins instead (see _boxes-and-panels.scss)
+@mixin basic-border($direction) {
+  @if $direction == 'all' {
+    border: 1px solid #{$loj-basic-border-color};
+  }
+  @if $direction == 'top' {
+    border-top: 1px solid #{$loj-basic-border-color};
+  }
+  @if $direction == 'right' {
+    border-right: 1px solid #{$loj-basic-border-color};
+  }
+  // Caution: panels should only have top and right borders.
+  // If you're using a left or bottom border, then you're probably putting the border on the wrong panel.
+  @if $direction == 'bottom' {
+    border-bottom: 1px solid #{$loj-basic-border-color};
+  }
+  // Caution: panels should only have top and right borders.
+  // If you're using a left or bottom border, then you're probably putting the border on the wrong panel.
+  @if $direction == 'left' {
+    border-left: 1px solid #{$loj-basic-border-color};
+  }
+}
+
+// Vertically and horizontally center child elements (i.e. flex-items)
+@mixin flex-center() {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+// Disables text selection
+@mixin disable-user-select() {
+  user-select: none;
+  -ms-user-select: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+}
+
+// Disable all mouse events (i.e. clicks).
+@mixin disable-pointer-events() {
+  pointer-events: none;
+}

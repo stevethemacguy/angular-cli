@@ -1,0 +1,77 @@
+/**
+ * Author: Steven Dunn
+ * Date Created: August 23, 2017
+ * Font-face includes only. Do not put anything else in this file.
+ */
+
+@font-face {
+  font-family: 'Proxima Nova Bold';
+  src: url('../fonts/proximanova-bold-webfont.eot');
+  src: url('../fonts/proximanova-bold-webfont.eot?#iefix') format('embedded-opentype'),
+  url('../fonts/proximanova-bold-webfont.woff2') format('woff2'),
+  url('../fonts/proximanova-bold-webfont.woff') format('woff'),
+  url('../fonts/proximanova-bold-webfont.ttf') format('truetype'),
+  url('../fonts/proximanova-bold-webfont.svg#proxima_nova_rgbold') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Proxima Nova Semibold';
+  src: url('../fonts/proximanova-semibold-webfont.eot');
+  src: url('../fonts/proximanova-semibold-webfont.eot?#iefix') format('embedded-opentype'),
+  url('../fonts/proximanova-semibold-webfont.woff2') format('woff2'),
+  url('../fonts/proximanova-semibold-webfont.woff') format('woff'),
+  url('../fonts/proximanova-semibold-webfont.ttf') format('truetype'),
+  url('../fonts/proximanova-semibold-webfont.svg#proxima_nova_rgbold') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Proxima Nova Regular';
+  src: url('../fonts/proximanova-regular-webfont.eot');
+  src: url('../fonts/proximanova-regular-webfont.eot?#iefix') format('embedded-opentype'),
+  url('../fonts/proximanova-regular-webfont.woff2') format('woff2'),
+  url('../fonts/proximanova-regular-webfont.woff') format('woff'),
+  url('../fonts/proximanova-regular-webfont.ttf') format('truetype'),
+  url('../fonts/proximanova-regular-webfont.svg#proxima_nova_rgregular') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Proxima Nova Italic';
+  src: url('../fonts/proximanova-regularitalic-webfont.eot');
+  src: url('../fonts/proximanova-regularitalic-webfont.eot?#iefix') format('embedded-opentype'),
+  url('../fonts/proximanova-regularitalic-webfont.woff2') format('woff2'),
+  url('../fonts/proximanova-regularitalic-webfont.woff') format('woff'),
+  url('../fonts/proximanova-regularitalic-webfont.ttf') format('truetype'),
+  url('../fonts/proximanova-regularitalic-webfont.svg#proxima_novaregular_italic') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Proxima Nova Condensed Semibold';
+  src: url('../fonts/proximanovacond-semibold-webfont.eot');
+  src: url('../fonts/proximanovacond-semibold-webfont.eot?#iefix') format('embedded-opentype'),
+  url('../fonts/proximanovacond-semibold-webfont.woff2') format('woff2'),
+  url('../fonts/proximanovacond-semibold-webfont.woff') format('woff'),
+  url('../fonts/proximanovacond-semibold-webfont.ttf') format('truetype'),
+  url('../fonts/proximanovacond-semibold-webfont.svg#proxima_nova_rgregular') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Proxima Nova Condensed Regular';
+  src: url('../fonts/proximanovacond-regular-webfont.eot');
+  src: url('../fonts/proximanovacond-regular-webfont.eot?#iefix') format('embedded-opentype'),
+  url('../fonts/proximanovacond-regular-webfont.woff2') format('woff2'),
+  url('../fonts/proximanovacond-regular-webfont.woff') format('woff'),
+  url('../fonts/proximanovacond-regular-webfont.ttf') format('truetype'),
+  url('../fonts/proximanovacond-regular-webfont.svg#proxima_nova_rgregular') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}

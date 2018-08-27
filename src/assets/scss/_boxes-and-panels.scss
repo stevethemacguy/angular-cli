@@ -1,0 +1,779 @@
+/**
+ * Author: Steven Dunn
+ * Date Created: August 14, 2017
+ * Last Modified: August 25, 2017
+ * Full Documentation: https://sites.google.com/site/lojisticwiki/ui-architecture/boxes-and-panels
+ *
+ * Base styles for Lojistic Boxes and Panels.
+ *
+ * BOXES
+ *  1. A box is just a flex container with flex-wrap: wrap;
+ *  2. Use boxes to:
+ *    A. Group panels, charts, or other items that need to move together as a unit (relative to a parent box).
+ *    B. Group 2+ vertical panels in a box when the height of those panels is less than the height of an adjacent panel
+ *       or box (i.e. if you have panels with vertical content that should be grouped together, surround them with a box).
+ *       See the Wiki documentation for a visual example.
+ *
+ *  3. All items (e.g. panels) inside a box can be re-arranged, but only within their parent box.
+ *     The entire box can move within it's own parent container, but all of the items (e.g. panels)
+ *     will move together as a unit with that box.
+ *
+ *  4. A Box can be an immediate child of another box (but don't think of boxes as "rows")
+ *  5. A Box may span the entire length of the screen (with Flex-basis 100%)
+ *  6. When styling boxes, use a class name that ends with "-box" so that boxes stand-out.
+ *
+ * PANELS
+ *  1. Use Panels to center content vertically or horizontally. Most panels have a .panel-title and .panel-number.
+ *  2. If you need to group 2+ panels together, put them in a Box.
+ *  3. A Panel should never be an immediate child of another panel.
+ *  4. A Panel may span the entire length of the screen (with Flex-basis 100%)
+ *
+ * BOXES AND PANELS
+ *  1. Are flex-containers that are used to organize flex-items.
+ *  2. Some Boxes and Panels don't have borders. Do NOT use a box or panel with the sole purpose of creating a border.
+ *  3. Use $show-panel-outlines or $show-box-outlines if you need help visualizing the outer edges of a box or panel.
+ *
+ * ROWS
+ *  1. When creating a perspective, it's best to think in terms of panels and boxes, not rows.
+ *  2. The word "row" refers to a horizontal line of flex-items, which can contain any number of Boxes and Panels,
+ *     but there is no direct correlation between the word "row" and a box or panel.
+ *     A box is NOT a row. A panel is also NOT a row.
+ *
+ *  3. Unless your intention is to group all panels in a row together, you do NOT not need a box for each "row" panels.
+ *     In many cases, it makes sense for a row of panels to be contained in a box, but putting panels in a box removes
+ *     the ability for the panels to be re-ordered outside of that box.
+ *
+ *  4. A row may contain 0, 1, or many boxes.
+ *  5. A row will always contain 1 or more panels
+ *  6. Any combination of Boxes and Panels can span the entire length of the screen, in which case
+ *     the sum of the Flex-basis for all boxes and panels (i.e. flex-items) must add up to 100%.
+ *
+ * EXAMPLES
+ *  Q. How do I make multiple panels move together as a unit?
+ *  A. Put the panels inside of a box.
+ *
+ *  Q. I want to create a horizontal row of panels that are all the same height. Should I use a box?
+ *  A. Do you want the option to re-order (i.e. move) the panels outside of this row?
+ *     Yes: Don't use a box.
+ *     No: Go to B.
+ *
+ *  B. Do you want to group the panels together so that they move together (e.g. as a single row)?
+ *     Yes: Use a box (with flex-basis: 100%) and put the panels inside.
+ *
+ *  Q. How do I create a single, horizontal panel that takes up an entire row?
+ *  A. Give the panel the .horizontal class. No box is needed.
+ *
+ *  Q. I want to create a row of panels, but they do NOT need to stay together as a single unit.
+ *  A. The panels are already contained within the .outer-box. Do not create an extra box.
+ *
+ * BORDERS
+ *  1. DO use the "panel-border-top" and "panel-border-right" mixins to create borders.
+ *  2. Panels only use Top and Right borders. If you're using a left or bottom border, then you're putting the border on the wrong panel.
+ *  3. Top border length is determined by the width of the panel
+ *  4. Right border length is determined by the height of the panel
+ *  3. Panel padding has no effect on border heights or widths.
+ *
+ * PANEL WIDTHS:
+ *  1. DO use the flex-basis mixin for flex-basis (it creates a matching max-width % for IE)
+ *  2. Do NOT use width
+ *  3. Do NOT use flex-basis without the mixin
+ *
+ * SPACING
+ * All panels have a default padding of $loj-panel-spacing. The padding value is stored in two sass variables:
+ * 	$loj-panel-spacing-number: 30	  // Unit-less variable used for calculations
+ * 	$loj-panel-spacing: 30px			  // Pixel value.
+ *
+ * The values should always match (i.e. 40 and 40px)
+ *
+ * SPACING DO'S an DON'TS
+ *  1. Boxes should use padding-left and padding-right only. Do NOT use top or bottom padding on a box.
+ *     In order to highlight a panel, the panel's padding (i.e. height/width) must stretch all the way to the edges
+ *     of their parent box, regardless of length of the border. For this reason, borders are sized and positioned
+ *     using psuedo-elements, not margin or padding.
+ *
+ *  2. To add space between the top of a BOX and the top of a child panel (i.e vertical space between the start
+ *     of panel's right-side border): Use padding-top on the Panel.
+ *
+ *  3. To add space between the bottom of the BOX and the bottom of child panels (i.e padding at the bottom of the box):
+ *     Use padding-bottom on the last row of panels (you must specify padding on each panel.
+ *     Using padding on the box would create unwanted space if the panel is highlighted).
+ *
+ *  4. To control the space inside a panel, use padding (left, right, top, or bottom). Do NOT use flex-basis to control padding.
+ *
+ *  5. Do NOT use margin.
+ *
+ * Exception:
+ *  Margin can be used to create Vertical spacing between a row of boxes/panels and the previous row.
+ *  This is the ONLY time margin should ever be used on the perspective. Even in this case use padding instead if possible.
+ *
+ * WHEN TO USE PADDING, FLEX-BASIS, OR MARGIN
+ * In the following examples, the word "Edge" is synonymous with "border" (but some boxes and panels don't have borders).
+ *
+ * 1. Use Padding on a Panel to...
+ *  A. Create space between a Panel's content and the outer edges of that panel (horizontal or vertical)
+ *     i.e. Push content in from the outer edges of a panel.
+ *
+ *  B. Create space "between" panels and other panels. Adjust the inner padding of the panels. Do not use margin.
+ *
+ * 2. Use padding on a Box to...
+ *  Create horizontal space between the outer edges of a box and it's inner panel(s)
+ *  (i.e. Push panels in from the left and right edges of the box).
+ *
+ *  With the exception of .outer-box (the box that holds all content on the perspective),
+ *  always try putting padding on the panels first. If the box is the .outer-box on the page, put the padding on the box instead of the inner panel.
+ *
+ * 3. Use Flexbox to...
+ * Control the entire width of the flex-item (e.g. box, panel, div, p, span). Use the flex-box mixin instead of the css property.
+ *
+ * 4. All panels are edge-to-edge with other panels. There should be no space between panels.
+ *    Do NOT use margin or padding for this purpose because it will break the layout at small widths (especially on IE).
+ *
+ * When looking at a child flex item (box or panel) in a browser dev tool, the edges should always match each other.
+ *
+ * STEPS TO CREATE A NEW PERSPECTIVE
+ *  1. Create an outer box with the .outer-box class
+ *  2. Add boxes and panels to the .outer-box
+ *  3. If there are nested panels, put them in a separate box.
+ *  4. Give all boxes and panels a flex-basis (by default, they use 100%).
+ *     The flex-basis should be 100% / number of sibling panels/boxes in the parent container.
+ *
+ *  OK: 4 panels in a box. Each with flex-basis: 25%.
+ *  OK: 4 panels in a box. Three use flex-basis: 20%. The fourth panels uses 40%. (20+20+20+40 == 100)
+ *
+ *  4. Add right and top borders using the border mixins
+ *  5. Add spacing. See above for detailed directions.
+ *
+ */
+
+// Box and Panel global variables
+$loj-basic-border-color: $panel-border-grey;
+$loj-panel-title-color: $grey-primary;
+
+// Default padding that surrounds each panel
+// Do NOT use px. This should be unit-less (e.g. 30)
+$loj-panel-spacing-number: 24;
+
+//Do not edit this value. Use $loj-panel-spacing-number above instead.
+$loj-panel-spacing: #{$loj-panel-spacing-number}px;
+
+// CAUTION: Unlike $loj-panel-spacing above, $loj-panel-spacing-mobile does not (yet) work with panel borders. TODO: Make it work.
+$loj-panel-spacing-mobile: 12px;
+$loj-panel-spacing-mobile-number: 12;
+
+//// Testing Variables
+// Reset to false when you're done testing
+//
+// Common Combinations:
+//  true, true, true, false, false, false, true   // Highlight Boxes and Panels
+//  true, true, true, true, false, false, false    // Show Flex-Item hierarchy (box > panel relationships)
+//  false, true, false, false, false, true, false  // Highlight Borders
+$hide-all-borders:        false; // Hides all borders (includes all boxes and child panels)
+$show-panel-colors:       false; // Gives each PANEL a unique background color
+$show-box-outlines:       false; // Shows BOX outlines
+$show-flex-item-numbers:  false; // Shows FLEX-ITEM numbers (e.g. boxes, panels, span...anything )
+$show-panel-outlines:     false; // Shows PANEL outlines
+$highlight-basic-borders: false; // Colors all borders red. $hide-all-borders must be false
+$show-panel-hover:        false; // Highlight panels when they are hovered. Backgrounds and overlays will cover the area shown.
+//// End Testing Variables
+
+// Examples:
+//  panel-border-top()      // Creates a centered border that is $loj-panel-spacing pixels away from the panel's left and right edges
+//  panel-border-top(0,0)   // Creates a top border that spans the entire width of the panel
+//  panel-border-top(30,0)  // Creates a border with 30px of space between the border and panel top
+//  panel-border-top(0,30)  // Creates a border that is 30px down from the top of the panel
+@mixin panel-border-top($left-padding:$loj-panel-spacing-number, $right-padding:$loj-panel-spacing-number) {
+  // Note: In Safari, two direction properties MUST be specified.
+  // (Top || Bottom) && (Left || Right) MUST be specified.
+  // The calculations below would be less complex if we didn't support Safari.
+  &::before {
+    display: block;
+    position: absolute;
+    height: 1px;
+    top: 0;
+    content: '';
+    background: $loj-basic-border-color;
+
+    @if ($left-padding == 0 and $right-padding == 0) {
+      width: 100%;
+      left: 0;
+    }
+
+    @else if ($left-padding > 0 and $right-padding > 0) {
+      $center-width: calc(100% - (#{$left-padding}px + #{$right-padding}px));
+      width: $center-width;
+      // Note: With this calc, the border will be off-centered if the $left-padding and $right-padding padding are different values (i.e. 10px and 40px),
+      // but IE11 can't handle the more advanced query below. In most cases, we just want the border to be centered, so this is okay.
+      // If this no longer meets your needs, consider re-writing the query without a nesting calc, if possible.
+      left: calc(0px + #{$left-padding}px);
+      // This is the best query, but IE11 doesn't understand calc() inside of calc().
+      //left: calc(50% - (#{$center-width} *.5));
+
+    }
+
+    @else if ($left-padding > 0 and $right-padding == 0) {
+      left: auto; // Override any specified left style. Required to override borders set at smaller viewports
+      right: 0;
+      width: calc(100% - (#{$left-padding}px));
+    }
+
+    @else if ($left-padding == 0 and $right-padding > 0) {
+      width: calc(100% - (#{$right-padding}px));
+      left: 0;
+    }
+  }
+}
+
+@mixin remove-border-right() {
+  &::after {
+    display: none;
+  }
+}
+
+// Examples:
+//  panel-border-right()      // Creates a centered border that is $loj-panel-spacing pixels from the panel's top and bottom edges
+//  panel-border-right(0,0)   // Creates a right border that spans the entire height of the panel
+//  panel-border-right(30,0)  // Creates a border with 30px of space between the border and panel top
+//  panel-border-right(0,30)  // Creates a border with 30px of space between the border and panel bottom
+@mixin panel-border-right($top-padding:$loj-panel-spacing-number, $bottom-padding:$loj-panel-spacing-number) {
+  &::after {
+    display: block;
+    position: absolute;
+    right: 0;
+    content: '';
+    width: 1px;
+    background: $loj-basic-border-color;
+
+    @if ($top-padding == 0 and $bottom-padding == 0) {
+      height: 100%;
+      top: 0;
+    }
+
+    @else if ($top-padding > 0 and $bottom-padding > 0) {
+      $center-height: calc(100% - (#{$top-padding}px + #{$bottom-padding}px));
+      height: $center-height;
+      // Note: With this calc, the border will be off-centered if the top and bottom padding are different values (i.e. 10px and 40px),
+      // but IE11 can't handle the more advanced query below. In most cases, we just want the border to be centered, so this is okay.
+      top: calc(0px + #{$top-padding}px);
+      // This is the best query, but IE11 doesn't understand calc() inside of calc().
+      // top: calc(50% - (#{$center-height} * .5));
+    }
+
+    @else if ($top-padding > 0 and $bottom-padding == 0) {
+      height: calc(100% - (#{$top-padding}px));
+      top: auto;  // Override any specified left style. Required to override borders set at smaller viewports
+      bottom: 0;
+    }
+
+    @else if ($top-padding == 0 and $bottom-padding > 0) {
+      height: calc(100% - (#{$bottom-padding}px));
+      top: 0; //should this be bottom?
+    }
+  }
+}
+
+// DO NOT USE LEFT OR BOTTOM BORDERS
+// Panel borders are created using ::before and ::after pseudo-elements, so each panel can have a maximum of two borders.
+// If you're trying to create a left or bottom border, than you're putting the border on the wrong panel.
+// @mixin panel-border-bottom(){} // Does not exist
+// @mixin panel-border-left(){}   // Does not exist
+
+
+.panel-row-odd {
+  &:nth-child(odd) {
+    background-color: $row-highlight;
+  }
+}
+
+.panel-row-even {
+  &:nth-child(even) {
+    background-color: $row-highlight;
+  }
+}
+
+// A box is a flex-container used to group multiple panels together. See the comments at the top of this file for detailed examples.
+.loj-box {
+  display: flex;
+  flex-wrap: wrap; // Push child loj-panels to the next line if they don't fit on the current line
+  position: relative; // Allows for box-titles to be positioned based on the box
+  flex-basis: 100%;
+  font-size: $font-size-16;
+  // Default Flex values for loj-box:
+  // justify-content: flex-start;
+
+  // Each perspective should have exactly one outer-box.
+  &.outer-box {
+    padding-left: $loj-panel-spacing-mobile;
+    padding-right: $loj-panel-spacing-mobile;
+    @media #{$medium} {
+      padding-left: $loj-panel-spacing;
+      padding-right: $loj-panel-spacing;
+    }
+  }
+
+  // Highlight rows of boxes
+  &.panel-row-even, &.panel-row-odd {
+    &.child-panel-small {
+      > .loj-panel {
+        .panel-number {
+          font-size: $font-size-24;
+        }
+      }
+    }
+    &.child-panel-medium {
+      > .loj-panel {
+        .panel-number {
+          font-size: $font-size-36;
+        }
+      }
+    }
+  }
+
+  // Remove left padding from the first panel in the box since the outer box uses left padding.
+  //@media #{$medium} {
+  //  > .loj-panel:first-child {
+  //    padding-left: 0;
+  //  }
+  //}
+
+  &.center-children {
+    justify-content: center;
+  }
+
+  // Override default margins, so paragraphs don't effect spacing.
+  p {
+    margin: 0;
+  }
+
+  .box-title {
+    font-size: $font-size-16;
+    // Adjust the title so it's always at the top of the box
+    position: absolute;
+    top: 0;
+    @media #{$medium} {
+      top: calc(#{$loj-panel-spacing} - 6px);
+    }
+    // Keep the box title centered, regardless of what the child panels are doing
+    width: 100%;
+    text-align: center;
+  }
+
+  .panel-title {
+    font-size: $font-size-16;
+    margin: 0;
+    text-align: center;
+    line-height: normal;
+
+    // Adjust the title so it's always at the top of the panel
+    position: relative;
+    top: -6px; // 0 puts it at the top, -6px is an adjustment based on the font and font-size
+
+    &.bold {
+      font-family: $bold;
+      text-transform: uppercase;
+    }
+
+    &.second-line {
+      top: -8px;
+    }
+  }
+} // End .loj-box
+
+// A loj-panel is a flex-container that is used to center content. All panels are also flex-items that live inside a parent loj-box.
+// See the comments at the top of this file for detailed examples.
+.loj-panel {
+  display: flex;
+  // Should this be center by default?
+  justify-content: flex-start;
+  align-items: center;
+  flex-direction: column;
+  padding: $loj-panel-spacing-mobile;
+  position: relative; // Allow for borders to position based on the panel
+  // The default flex-basis is auto. 100% ensures that the borders and edges
+  // of loj-panels always line up with each other vertically, regardless of the content size.
+  // Horizontal panels MUST override this value to determine their width.
+  flex-basis: 100%;
+  // Force the panel layout to always look good, even we need to cut off the content
+  // This is helpful for small viewports, but is not required if we create a different design at these viewports
+
+  // IE Fix. Without this, IE does not account for padding when calculating flex-item width (i.e. text does not wrap inside the the flex-item).
+  > p, span, div {
+    max-width: 100%;
+  }
+
+  &.allow-overflow {
+    overflow: visible;
+  }
+
+  @media #{$medium} {
+    padding: $loj-panel-spacing;
+    overflow-x: hidden; // Ensures nothing can ever go outside of the panels at small widths
+    overflow-y: hidden; // Required on IE11 and EDGE ONLY!
+    position: relative; // Allow for borders to position based on the panel
+
+    // If you want to allow the point markers on the chart to overflow the container (most noticeable when hovering),
+    // do all of the following:
+    //  1. Remove overflow: hidden from the the chart-container (i.e. use the small-chart class)
+    //  2. AND Use HighChart's ChartOptions.style property to set "style: {overflow: visible}" on the chart itself
+    //  3. Optional: You might also have to use this .allow-overflow class on the loj-panel holding the chart.
+    //  4. Optional: Set tooltip { outside: true }
+    //
+    // Caution: This isn't always as helpful as it seems. It will allow tooltips to overflow, but won't try to keep them within the chart area.
+    &.allow-overflow {
+      overflow: visible;
+    }
+  }
+
+  // Highlight this panel
+  &.highlight {
+    background-color: $panel-highlight;
+  }
+
+  &.center-children {
+    justify-content: center;
+  }
+
+  // Layout the Panel's contents horizontally instead of vertically.
+  // The panel's contents are spaced evenly over the entire horizontal space.
+  &.horizontal {
+    flex-direction: row;
+    justify-content: space-between;
+
+    // Reset negative top adjustment so that titles in horizontal panels line up with other elements.
+    > .panel-title {
+      top: 0;
+    }
+  }
+
+  // The sum or total dollar amount (e.g 5,000, $3,500.50) shown in the panel.
+  .panel-number {
+    font-size: $font-size-48;
+    color: $black;
+  }
+
+  &.child-panel-small {
+    .panel-number {
+      font-size: $font-size-24;
+    }
+  }
+
+  &.child-panel-medium {
+    .panel-number {
+      font-size: $font-size-36;
+    }
+  }
+} // End .loj-panel
+
+// There are two ways to control chart height:
+//
+// 1. Give the parent panel or box a set height (e.g. height: 40vh)
+// If you give the parent panels a set height (and remove any height css from the chart), the chart WILL be 100% responsive.
+// Note: the charts will be 100% of the parent panel's height, but this does NOT account for the title and number.
+// With this method, you set the height on each panel (% or px). The chart height is then based on the panel.
+//
+// Pros
+//  Chart height is responsive and the overall perspective layout will never change
+//  It's easier to use percentages on the panels, then figure out specific heights on each chart.
+//
+// Cons:
+//  Re-sizes might be a little slower.
+//
+// Note: You can still give the panels a fixed px height/width if you don't want the height to be responsive.
+// If you want the charts to have a min-height, put the min-height on the PANEL, not the chart. All height adjustments should be to the panel.
+//
+//
+// 2. Give the chart a set height (or min-height) and leave the parent panel/box's height unset.
+// The panel height will be determined by it's content, which in this case, is the height of the chart.
+//
+// Pro:
+//  The chart elements are guaranteed to have a specific height.
+//
+// Cons:
+//  Chart height is no longer responsive. The charts also can NOT use VH units.
+//  You have to carefully calculate heights to maintain the perspective layout.
+//
+// Note: If you use min-height: 300px instead of height, you are only guaranteed that the chart will
+// be AT LEAST 300px tall. The chart CAN grow larger. For example, on the service perspective,
+// Shipments via air/ground are stacked. Since they each have a height of 300px, the other 3
+// charts on the row will each be 600px tall to match.
+//
+// The chart-container class controls the height and width of all charts. In general, the height and width of the chart element
+// should always be 100%, so that it responsively adapts to the height of it's parent panel (see discussion above).
+.chart-container {
+  width: 100%;
+  height: 100%;
+
+  // On mobile, give the chart a max-width so it doesn't become too large and force the user to zoom out
+  max-width: 320px;
+
+  // If you want to allow the point markers on the chart to overflow the container, use the .small-chart class be
+  overflow: hidden;
+
+  // If you want to allow the point markers on the chart to overflow the container (most noticeable when hovering),
+  // do both of the following:
+  //  1. Remove overflow: hidden from the the chart-container (i.e. use this small-chart class)
+  //  2. AND Use HighChart's ChartOptions.style property to set "style: {overflow: visible}" on the chart itself
+  //  3. Optional: You might also have to use this .allow-overflow class on the loj-panel holding the chart.
+  //  4. Optional: Set tooltip { outside: true }. This does have an effect, but it doesn't always help.
+  &.small-chart {
+    overflow: visible;
+  }
+
+  //If you want the panel height to match the chart height (instead of the other way around)
+  //Set a height for each chart and remove all panel heights.
+  //height: 300px; //Or min-height
+  @media #{$medium} {
+    max-width: 100%;
+  }
+}
+
+// CAUTION: In 95% of cases, you should NOT use this to create a border. Add borders to boxes and panels instead
+// If you need a border between two "rows", put the next row of panels in a box, and add a border-top to the box.
+//
+// POSSIBLE (rare) use case for .loj-border-horizontal:
+// You have a second "row" of panels, but you can't put them in a box because you plan to re-order them
+// in relation to a larger outer/parent box (e.g. order: 3;). In this case, you can use .loj-border-horizontal
+// to create a horizontal border between the "rows", while still allowing all panels to be re-ordered in relation
+// to their parent box.
+.loj-border-horizontal {
+  flex-basis: 100%;
+  height: 1px;
+  margin: $loj-panel-spacing 0;
+  background: #{$loj-basic-border-color};
+}
+
+////////////////////////////////////////////////\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+/////                       ~(^_^)~         \(^_^)/          ~(^_^)~                       \\\\\
+///                                                                                           \\\
+//      TESTING CSS ONLY BELOW THIS POINT          TESTING CSS ONLY BELOW THIS POINT           //
+///                                                                                           ///
+/////  ¯\_(ツ)_/¯                                                           ¯\_(ツ)_/¯      /////
+//\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\////////////////////////////////////////////////
+
+.loj-panel {
+  @if $show-flex-item-numbers== true {
+    position: relative;
+  }
+  @if $show-panel-hover == true {
+    //nth-child is used to overwrite previous nth-child selectors
+    &:nth-child(n):hover {
+      background: rgba(0, 0, 0, .5);
+    }
+  }
+}
+
+.loj-border-horizontal {
+  // Testing only
+  @if $show-flex-item-numbers== true {
+    position: relative;
+  }
+}
+
+// Number all child flex-items relative to their parent box
+.loj-box > * {
+  @if $show-flex-item-numbers == true {
+    &:nth-child(1) {
+      &:before {
+        color: black;
+        content: '1';
+        position: absolute;
+        top: 0;
+        left: 0;
+      }
+      &.loj-border-horizontal:before {
+        top: -11px;
+      }
+    }
+    &:nth-child(2) {
+      &:before {
+        color: black;
+        content: '2';
+        position: absolute;
+        top: 0;
+        left: 0;
+      }
+      &.loj-border-horizontal:before {
+        top: -11px;
+      }
+    }
+    &:nth-child(3) {
+      &:before {
+        color: black;
+        content: '3';
+        position: absolute;
+        top: 0;
+        left: 0;
+      }
+      &.loj-border-horizontal:before {
+        top: -11px;
+      }
+    }
+    &:nth-child(4) {
+      &:before {
+        color: black;
+        content: '4';
+        position: absolute;
+        top: 0;
+        left: 0;
+      }
+      &.loj-border-horizontal:before {
+        top: -11px;
+      }
+    }
+    &:nth-child(5) {
+      &:before {
+        color: black;
+        content: '5';
+        position: absolute;
+        top: 0;
+        left: 0;
+      }
+      &.loj-border-horizontal:before {
+        top: -11px;
+      }
+    }
+    &:nth-child(6) {
+      &:before {
+        color: black;
+        content: '6';
+        position: absolute;
+        top: 0;
+        left: 0;
+      }
+      &.loj-border-horizontal:before {
+        top: -11px;
+      }
+    }
+    &:nth-child(7) {
+      &:before {
+        color: black;
+        content: '7';
+        position: absolute;
+        top: 0;
+        left: 0;
+      }
+    }
+    &:nth-child(8) {
+      &:before {
+        color: black;
+        content: '8';
+        position: absolute;
+        top: 0;
+        left: 0;
+      }
+      &.loj-border-horizontal:before {
+        top: -11px;
+      }
+    }
+    &:nth-child(9) {
+      &:before {
+        color: black;
+        content: '9';
+        position: absolute;
+        top: 0;
+        left: 0;
+      }
+      &.loj-border-horizontal:before {
+        top: -11px;
+      }
+    }
+    &:nth-child(10) {
+      &:before {
+        color: black;
+        content: '10';
+        position: absolute;
+        top: 0;
+        left: 0;
+      }
+      &.loj-border-horizontal:before {
+        top: -11px;
+      }
+    }
+  }
+}
+
+// Color all panels
+.loj-panel {
+  @if $show-panel-outlines == true {
+    outline: 2px solid red;
+  }
+  @if $show-panel-colors == true {
+    .panel-title {
+      color: white;
+    }
+    &:nth-child(1) {
+      background: royalblue;
+    }
+    &:nth-child(2) {
+      background: mediumpurple;
+    }
+    &:nth-child(3) {
+      background: lightseagreen;
+    }
+    &:nth-child(4) {
+      background: darkslategrey;
+    }
+    &:nth-child(5) {
+      background: lightskyblue;
+    }
+    &:nth-child(6) {
+      background: royalblue;
+    }
+    &:nth-child(7) {
+      background: mediumpurple;
+    }
+    &:nth-child(8) {
+      background: lightseagreen;
+    }
+    &:nth-child(9) {
+      background: darkslategrey;
+    }
+    &:nth-child(10) {
+      background: lightskyblue;
+    }
+  }
+
+  //If you want to cycle panels colors infinitely. This is less useful because you want to see what number flex-item you're at
+  //@if $show-infinit-panel-colors = true {
+  //  $colors: royalblue, mediumpurple, lightseagreen, darkslategrey, lightskyblue;
+  //
+  //  @for $i from 1 through length($colors) {
+  //    &:nth-child(#{length($colors)}n+#{$i}) {
+  //      background: nth($colors, $i)
+  //    }
+  //  }
+  //}
+}
+
+.loj-box {
+  @if $show-box-outlines == true {
+    outline: 2px solid darkorange;
+  }
+}
+
+@if $hide-all-borders == true {
+  // The !important tag is intentional; it overrides all panel and box borders while TESTING ONLY.
+  .loj-box, .loj-panel {
+    border: none !important;
+  }
+  // Uncomment to hide loj horizontal borders too
+  //.loj-border-horizontal {
+  //  background-color: transparent;
+  //}
+}
+
+@if $hide-all-borders == false {
+  @if $highlight-basic-borders == true {
+    .loj-box, .loj-panel {
+      // The !important tag is intentional; it overrides all panel and box borders while TESTING ONLY.
+      border-color: red !important;
+
+      // Psuedo-element borders
+      &::after, &::before {
+        background: red !important;
+      }
+    }
+    .loj-border-horizontal {
+      background-color: red;
+    }
+  }
+}

@@ -1,0 +1,13 @@
+/**
+ * Author: Steven Dunn
+ * Date Created: August 7, 2017
+ *
+ * Foundation's global settings should be modified using _lojistic-foundation-settings.scss.
+ * This file is for extra overrides that do NOT have a default Foundation setting.
+ */
+
+// Create a shorter word to use instead of Foundation's "column" keyword. Technically, you can continue to use
+// "column," but it is discouraged. Foundation extends ".column" with ".columns" in the same way. See _flex-grid.scss.
+.col {
+  @extend .column; // sass-lint:disable-line placeholder-in-extend
+}

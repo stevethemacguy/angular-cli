@@ -1,0 +1,149 @@
+/**
+ * Author: Steven Dunn
+ * Date Created: August 31, 2017
+ * 
+ */
+
+////// Lojistic Buttons \\\\\\
+// Base styling for all lojistic buttons. This CSS works for both <button> and <div> elements.
+.loj-btn, .loj-btn-secondary, .loj-btn-tertiary {
+  @include disable-user-select;
+  // border-radius: 2px;
+  background-color: $loj-blue;
+  border: 1px solid $loj-blue;
+  height: 38px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  color: $white;
+  font-weight: bold;
+  //letter-spacing: 0.5px;
+  text-transform: uppercase;
+  font-family: $regular;
+
+  &.grey {
+    background-color: $grey-secondary;
+    border: 1px solid $grey-secondary;
+  }
+
+  &.inline {
+    display: inline-flex;
+    // Caution: Float is required. Without it, inline-flex will add 4px of spacing if there are any spaces in your HTML code.
+    // This is a known "bug" when using display inline-block or inline-flex. If you need to remove the float,
+    // either remove the spaces between elements in your html or use display: block or flex instead.
+    // See https://css-tricks.com/fighting-the-space-between-inline-block-elements/
+    float: left;
+  }
+
+  // This was to fix some bug on mobile landscape, but I don't remember what
+  //@media (max-height: $foundation-medium) {
+  //  display: block;
+  //  text-align: center;
+  //}
+
+  &:active {
+    box-shadow: inset 0 1px 3px 0 rgba(0, 0, 0, 0.25);
+  }
+
+  &:focus {
+    outline: none;
+  }
+
+  // Prevent potential iOS click issues by only enabling hover styling on larger viewports
+  @media #{$medium} {
+    &:hover {
+      opacity: .4;
+    }
+  }
+}
+
+// Secondary button specific styling
+.loj-btn-secondary {
+  color: $grey-secondary;
+  border-color: $grey-secondary;
+  background-color: transparent;
+
+  &.blue {
+    color: $loj-blue;
+    border-color: $loj-blue;
+  }
+
+  &.green {
+    color: $active-green;
+    border-color: $active-green;
+  }
+
+
+  // Prevent potential iOS click issues by only enabling hover styling on larger viewports
+  @media #{$medium} {
+    &:hover {
+      opacity: .4;
+    }
+  }
+
+  &:active {
+    opacity: .4;
+    background-color: $grey-primary;
+    color: $white
+  }
+
+  &.blue:active {
+    background-color: $loj-blue;
+  }
+
+  &.green:active {
+    background-color: $active-green;
+  }
+}
+
+// Tertiary button specific styling
+.loj-btn-tertiary {
+  color: $grey-primary;
+  border: none;
+  background-color: transparent;
+  text-transform: none;
+
+  // Prevent potential iOS click issues by only enabling hover styling on larger viewports
+  @media #{$medium} {
+    &:hover {
+      opacity: .5;
+    }
+  }
+
+  &:active {
+    opacity: .4;
+    box-shadow: none;
+  }
+}
+
+// LINKS (i.e. navigation elements that are not anchor tags)
+.loj-link {
+  @include disable-user-select;
+  outline: none;
+  color: $loj-blue;
+  cursor: pointer;
+}
+
+// ICONS
+.menu-action-icon {
+  @include disable-user-select;
+  fill: $grey-primary;
+  &.light {
+    fill: $grey-secondary
+  }
+  @media #{$medium} {
+    cursor: pointer;
+    height: 100%;
+    width: 100%;
+    &:hover {
+      fill: $loj-blue;
+    }
+  }
+}
+
+.menu-action.active {
+  >.menu-action-icon {
+    fill: $loj-blue;
+  }
+}

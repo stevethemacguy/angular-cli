@@ -1,0 +1,10 @@
+/**
+ * Author: Steven Dunn
+ * Date Created: March 12, 2018
+ * Documentation: https://www.npmjs.com/package/ngx-toastr
+ *
+ * Imports default ngx-toastr plugin CSS and custom Lojistic overrides.
+ */
+
+@import "~ngx-toastr/toastr";
+@import 'loj-toastr';

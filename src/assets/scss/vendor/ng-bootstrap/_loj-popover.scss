@@ -1,0 +1,155 @@
+/**
+ * Author: Steven Dunn
+ * Date Created: August 20, 2018
+ *
+ * Put CSS for all ng-bootstrap popovers in this file. Ideally, this CSS would live with
+ * each Component, but Angular's "Emulated" view encapsulation does not allow it.
+ *
+ * This file lives outside of app > src so that popover components can be targeted without
+ * using the workarounds mentioned below.
+ *
+ * WARNING
+ * Do NOT use ViewEncapsulation.None or shadow-piercing CSS selectors (e.g. /deep/ or ng-deep)
+ * in Components. These are workarounds that are scheduled to be deprecated by Angular.
+ * (Source: https://angular.io/guide/component-styles). Use of ViewEncapsulation.None and
+ * shadow selectors in this repository is FORBIDDEN .
+ *
+ */
+@import "../../variables";
+
+//////// Global Popover Styles and NG-Bootstrap Overrides \\\\\\\\
+loj-popover, .loj-popover {
+  .arrow {
+    display: none;
+  }
+}
+
+.popover-body {
+  // Setting position to absolute  overrides NG-Bootstrap's JS-Calculated positioning.
+  position: absolute;
+  top: 40px;
+  left: 0;
+  width: 300px;
+  height: 160px;
+  background-color: $white;
+  //border: 1px solid $light-grey;
+  border-radius: 2px;
+  padding: 24px;
+  color: $black;
+  // Shift shadow down only. Darker grey. No spread. Down and right 1px also looks good.
+  box-shadow: 0 1px 6px 0 $dark-grey;
+  // Other Box Shadow options
+  // box-shadow: 1px 1px 6px 1px $grey-secondary; // Shift Right and Down. Lighter grey with spread
+  // box-shadow: 1px 1px 6px 0 $dark-grey; // Shift shadow right and down. Darker grey. No spread.
+  // box-shadow: 1px 2px 6px 1px $grey-secondary; // S
+
+  // CSS Arrow based on the following:
+  //  https://stackoverflow.com/questions/9450733/css-triangle-custom-border-color
+  //  http://jsfiddle.net/4ZeCz/5397/
+  //
+  // Note: The arrow was NOT created with cssarrowplease.com, because it resulted in a border that was too thin.
+  &:after, &:before {
+    content: '';
+    display: block;
+    position: absolute;
+    bottom: 100%; //This has no effect on the arrow
+    left: 0;
+    width: 0;
+    height: 0;
+    border-style: solid;
+  }
+
+  // CSS Arrow. Border color controls the color of the outside, thin border
+  &:before {
+    top: -20px;
+    border-color: transparent transparent $light-grey transparent;
+    border-width: 10px;
+
+    // Add a drop-shadow to the top of the triangle
+    -webkit-filter: drop-shadow(0px -1px 1px rgba(0, 0, 0, 0.18));
+    filter: drop-shadow(0px -1px 1px rgba(0, 0, 0, 0.18));
+  }
+
+  // CSS Arrow. Border-color controls the color of the inner triangle
+  &:after {
+    top: -19px;
+    border-color: transparent transparent white transparent;
+    border-width: 10px;
+  }
+}
+
+.popover-positioner {
+  position: relative;
+}
+
+input[type=checkbox] {
+  vertical-align: middle;
+}
+//////// END Global Popover Styles and NG-Bootstrap Overrides ////
+
+//////// Component-Specific CSS \\\\\\\\\
+
+// Header Component
+.carrier-popover {
+  .popover-body {
+    color: $black;
+    width: 300px;
+    height: 343px;
+    &:after, &:before {
+      left: 25px;
+    }
+  }
+
+  .carrier-checkboxes {
+    padding: 24px 0;
+    @include flex-center();
+  }
+
+  input {
+    height: unset;
+    cursor: pointer;
+  }
+  
+  .filter-title {
+    text-align: center;
+    font-size: $font-size-14;
+    padding-bottom: 12px;
+    border-bottom: 1px solid $light-grey;
+  }
+
+  .loj-btn {
+    margin-top: 0;
+    font-size: $font-size-14;
+    height: 32px;
+  }
+
+  label {
+    @include disable-user-select();
+    color: $grey-primary;
+    cursor: pointer;
+    position: relative;
+    top: 1px;
+    font-size: $font-size-14;
+    margin-left: 4px;
+  }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

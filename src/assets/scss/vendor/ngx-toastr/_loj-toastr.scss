@@ -1,0 +1,48 @@
+/**
+ * Author: Steven Dunn
+ * Date Created: March 12, 2018
+ *
+ * Lojistic CSS overrides for ngx-toastr. If you need to replace the plugin CSS entirely,
+ * use the 'toastClass' and/or the 'positionClass' option when importing ToastrModule.
+ */
+
+.toast-container {
+  > .toast {
+    margin: 0 0 2px;
+    border-radius: 0;
+    padding: 8px 15px 8px 50px;
+
+    // Center everything
+    display: flex;
+    align-items: center;
+  }
+
+  > .toast-success {
+    background-image: url('http://cultofthepartyparrot.com/parrots/hd/dealwithitparrot.gif');
+    background-position: 9px -8px;
+    background-size: 34px;
+  }
+
+  > .toast-error {
+    background-image: none; // Remove the X Circle on the left. It is part of the background and NOT the actual close button
+  }
+
+  .toast-message {
+    margin-left: 5px;
+  }
+}
+
+.toast-container.toast-top-full-width > .toast,
+.toast-container.toast-bottom-full-width > .toast {
+  width: 99%
+}
+
+
+.toast-close-button {
+  position: static;
+  font-size: 28px;
+
+  // If using display: flex on .toast, move the close button to the end of the alert
+  margin-left: auto; // Move the close button to the far right
+  order: 1; // Re-order the close button so that it comes after the toast message text
+}

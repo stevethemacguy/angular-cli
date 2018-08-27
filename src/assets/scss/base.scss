@@ -1,0 +1,38 @@
+/**
+ * Author: Steven Dunn
+ * Date Created: August 23, 2017
+ *
+ * Sass imports only. Do not put CSS in this file. Import order is important. Insert new imports after the last import.
+ */
+
+// Vendor Sass. Is this sass being duplicated? Should we import this in app.component.ts instead?
+@import 'vendor/foundation/lojistic-foundation';
+@import 'vendor/ng-bootstrap/bootstrap-modal';
+@import 'vendor/hamburger-menu/loj-hamburger';
+@import 'vendor/ngx-toastr/ngx-toastr';
+
+// Calendar specific. Bootstrap-calendar is a custom (i.e. stripped-down) version of bootstrap
+// that is used by the Calendar only. The calendar scss files should be imported separately from other vendor scss.
+// IMPORTANT: For development, we are importing these files directly in calendar.component.ts because webpack re-builds
+// much faster when changing scss at the component level. In production, use the imports here INSTEAD and remove the imports in calendar.component.
+// Todo: Uncomment these imports prior to pushing to production.
+//@import 'vendor/ng-bootstrap/bootstrap-calendar';
+//@import 'vendor/ng-bootstrap/loj-calendar';
+//@import 'vendor/ng-bootstrap/loj-single-date-calendar';
+//@import 'vendor/ng-select/loj-ng-select';
+//@import 'vendor/ng-bootstrap/loj-popover';
+
+//@import '~bootstrap/dist/css/bootstrap.min.css'; // Imports bootstrap globally. DO NOT USE. FOR TESTING ONLY
+
+// Global Sass files
+// Import order is important. Insert new imports after the last import
+@import 'fonts';
+@import 'variables'; // Includes media queries
+//@import 'mixins';
+@import 'global';
+@import 'base-modal';
+@import 'buttons';
+@import 'forms';
+
+//Excluded to reduce duplicate CSS. Import these scss files manually in your component scss file.
+//@import 'boxes-and-panels';

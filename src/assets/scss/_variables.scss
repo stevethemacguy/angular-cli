@@ -1,0 +1,132 @@
+/**
+ * Author: Steven Dunn
+ * Date Created: August 23, 2017
+ *
+ * Global Sass variables for color, font-size, width, height, margin, and padding.
+ */
+@import 'media-queries';
+@import 'mixins';
+
+// Black and White
+$black: #000000; //#231F25
+$white: #FFFFFF;
+
+// Basic Colors
+$loj-red: #EB586F;
+$loj-green: #60C091;
+$loj-orange: #F68D4A;
+
+// Blues (darkest to lightest)
+$dark-blue: #02334D;
+$logo-dark-blue: #1A3D54;
+$blue-secondary: #3784BC;
+$loj-blue: #22BDEF;
+$blue-tertiary: #BFEBFB;
+$light-blue: #F4FCFE;
+
+// Stolen from Personal Capital
+$pc-compare-blue: #407cca;
+$pc-dark-blue: #305685;
+$pc-green: #00b088;
+$pc-orange: #ff9e15;
+$pc-purple: #693277;
+
+// Greys
+$dark-grey: #6a6a77;
+$logo-dark-grey: #80878D;
+$grey-primary: #8A8A94;
+$grey-secondary: #BCBEC0;
+$hover-grey: #E4E4E6;
+$light-grey: #F2F2F2;
+
+// Panels and Rows
+$panel-border-grey: $light-grey;
+$panel-highlight: $light-blue;
+$row-highlight: $light-blue;
+
+//Sidebar
+$item-hover: #e4e6e6;
+$sidebar-grey: $light-grey;
+
+// Inputs
+$active-green: #0CA651;
+$money-green: #2ca01c;
+
+// Tables
+$table-header-background: $light-grey;
+
+////////// Heights and Widths\\\\\\\\\\
+$header-height: 80px;
+$mobile-header-height: 40px;
+$sub-header-height: 60px;
+$sidebar-header-height: 40px; // Redline is 8.8937% (or 41px at 320px)
+$sidebar-header-width: 260px; // For responsive, use 23.4%;
+$sidebar-header-width-collapsed: 76px;
+$mobile-sub-header-height: 32px;
+$header-width: calc(100% - #{$sidebar-header-width}); // For responsive, use 76.6%;
+$nav-btn-width: 21.875%;
+$nav-list-width: 78.125%;
+$nav-item-height: 40px;
+$footer-height: 46px;
+$icon-height-and-width: 24px;
+$icon-height-and-width-sm: 20px;
+
+////////// MISC\\\\\\\\\\
+$fixed-nav-z-index: 3;
+////////// Font Families\\\\\\\\\\
+$bold: 'Proxima Nova Bold', sans-serif;
+$semibold: 'Proxima Nova Semibold', sans-serif;
+$regular: 'Proxima Nova Regular', sans-serif;
+$italic: 'Proxima Nova Italic', sans-serif;
+$condensed-regular: 'Proxima Nova Condensed Regular', sans-serif;
+$condensed-semibold: 'Proxima Nova Condensed Semibold', sans-serif;
+
+////////// Font Sizes \\\\\\\\\\
+// Em px values are calculated from the current element's font size. If no font-size is specified on the current element, then
+// the browser will search up the ancestor tree until it finds a parent font-size. If no font size is found, then the em value is
+// calculated from the HTML font-size (i.e. in many cases, em behaves identically to rem).
+//
+// Rem px values are calculated based on the font-size of the HTML element. If no font-size for html is specified, then
+// 1rem == the browser's font-size setting (e.g. 16px). Specifying a base font-size for the html element will
+// adjust the entire application, but it will also override the user's browser setting (and the sass variables names will need to be updated)
+$font-size-6: 0.375em;
+$font-size-7: 0.438em;
+$font-size-8: 0.500em;
+$font-size-9: 0.563em;
+$font-size-10: 0.625em;
+$font-size-11: 0.688em;
+$font-size-12: 0.750em;
+$font-size-13: 0.813em;
+$font-size-14: 0.875em;
+$font-size-15: 0.938em;
+$font-size-16: 1em; // Assuming the user's browser font-setting is 16px and the HTML font-size is 100%.
+$font-size-17: 1.063em;
+$font-size-18: 1.125em;
+$font-size-19: 1.188em;
+$font-size-20: 1.250em;
+$font-size-21: 1.313em;
+$font-size-22: 1.375em;
+$font-size-23: 1.438em;
+$font-size-24: 1.500em;
+$font-size-26: 1.625em;
+$font-size-28: 1.75em;
+$font-size-30: 1.875em;
+$font-size-32: 2em;
+$font-size-34: 2.125em;
+$font-size-36: 2.25em;
+$font-size-38: 2.375em;
+$font-size-40: 2.5em;
+$font-size-42: 2.625em;
+$font-size-44: 2.75em;
+$font-size-46: 2.875em;
+$font-size-48: 3em;
+$font-size-50: 3.125em;
+$font-size-52: 3.25em;
+
+$perspective-font-size: 1rem;
+
+// Rem font sizes for pages that don't have child components. When in doubt, use ems. This ensures that elements within a component
+// inherit from the component's "base" font-size.
+$font-size-10-rem: 0.625rem;
+$font-size-12-rem: 0.750rem;
+$font-size-14-rem: 0.875rem;

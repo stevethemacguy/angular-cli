@@ -1,3 +1,41 @@
-<p>
-  home works!
-</p>
+<div class="home-component">
+  <ul class="home-page-panel">
+    <li class="panel-item panel-header">
+      <span class="panel-header-text">CARRIER CONNECTIONS</span>
+    </li>
+    <li class="panel-item ups">
+      <div class="ups-logo"></div>
+      <span class="panel-item-text">{{upsConnectionStatus}}</span>
+      <div class="connection-circle" [ngClass]="setStatusClass('ups')"></div>
+    </li>
+    <li class="panel-item fed-ex">
+      <div class="fedex-logo"></div>
+      <span class="panel-item-text">{{fedexConnectionStatus}}</span>
+      <div class="connection-circle" [ngClass]="setStatusClass('fedex')"></div>
+    </li>
+    <li class="panel-item dhl">
+      <div class="dhl-logo"></div>
+      <span class="panel-item-text">{{dhlConnectionStatus}}</span>
+      <div class="connection-circle" [ngClass]="setStatusClass('dhl')"></div>
+    </li>
+    <li class="panel-item other">
+      <div class="other-logo"></div>
+      <span class="panel-item-text">{{uspsConnectionStatus}}</span>
+      <div class="connection-circle" [ngClass]="setStatusClass('usps')"></div>
+    </li>
+    <li class="panel-item usps" [class.disabled-parent]="setStatusClass('other') === 'disabled'">
+      <div class="usps-logo"></div>
+      <span class="panel-item-text" [ngClass]="setStatusClass('other')">{{otherConnectionStatus}}</span>
+      <div class="connection-circle" [ngClass]="setStatusClass('other')"></div>
+    </li>
+  </ul>
+  <ul class="home-page-panel">
+    <li class="panel-item panel-header">
+      <span class="panel-header-text">30 DAY SUMMARY</span>
+    </li>
+    <li class="panel-item">
+      <span class="panel-item-text no-margin">Shipments</span>
+      <span class="panel-item-text no-margin">75,489</span>
+    </li>
+  </ul>
+</div>

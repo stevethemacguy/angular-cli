@@ -1,0 +1,104 @@
+@import '../../assets/scss/variables';
+
+.home-component {
+  padding: 13px;
+  @media #{$medium} {
+    padding: 24px;
+  }
+}
+
+.home-page-panel {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  margin-bottom: 13px;
+  border: 2px solid $light-grey;
+  border-top-color: $loj-blue;
+}
+
+.panel-header-text {
+  font-size: $font-size-14;
+}
+
+.panel-item-text {
+  font-size: $font-size-12;
+
+  //Push the text to the right (i.e. "justify-self: flex-start")
+  margin-left: auto;
+  margin-right: 16px;
+
+  &.no-margin {
+    margin: 0;
+  }
+}
+
+.connection-circle {
+  border-radius: 50%;
+  height: $font-size-18;
+  width: $font-size-18;
+  &.connected {
+    background-color: $loj-green;
+  }
+  &.failure {
+    background-color: $loj-red;
+  }
+  &.disconnected, &.coming-soon, &.disabled {
+    background-color: $grey-primary;
+  }
+}
+
+.ups-logo {
+  height: 20px;
+  width: 20px;
+  background: url("../../assets/images/ups_logo.png") center center no-repeat;
+  background-size: 100%;
+}
+
+.usps-logo {
+  height: 12px;
+  width: 58px;
+  background: url("../../assets/images/icons/usps-logo.svg") center center no-repeat;
+  background-size: 100%;
+}
+
+.fedex-logo {
+  height: 15px;
+  width: 52px;
+  background: url("../../assets/images/fedex_logo.png") center center no-repeat;
+  background-size: 100%;
+}
+
+.dhl-logo {
+  height: 15px;
+  width: 62px;
+  background: url("../../assets/images/dhl_logo.png") center center no-repeat;
+  background-size: 100%;
+}
+
+.other-logo {
+  height: 25px;
+  width: 25px;
+  background: url("../../assets/images/icons/ontrac-logo.svg") center center no-repeat;
+  background-size: 100%;
+}
+
+.panel-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 16px;
+  height: 32px;
+  border-bottom: 2px solid $light-grey;
+  &:last-of-type {
+    border: none;
+  }
+  &.disabled-parent {
+    opacity: .5;
+    background-color: $light-grey;
+  }
+}
+
+.panel-header {
+  height: 40px;
+  color: $loj-blue;
+}

@@ -1,0 +1,239 @@
+/**
+ * Author: Steven Dunn
+ * Date Created: December 13, 2017
+ * Dependencies: Ng-Select plugin (https://github.com/ng-select/ng-select)
+ *
+ * Base styling for custom select elements (i.e. drop-down inputs). This CSS below overrides and extends the plugin's default styling.
+ * This file lives outside of app > src to avoid the need to target the child ng-select component with /deep/ or ng-deep (which may become deprecated).
+ */
+@import "../../variables";
+
+// Extra nesting is required to override default Ng-Select styles
+.loj-form .input-container.loj-drop-down {
+  border-radius: 0;
+  outline: none;
+  box-shadow: none;
+  -webkit-box-shadow: none;
+
+  // A subdued drop-down menu (e.g. date-type on any perspective)
+  &.diminished {
+    .ng-select {
+      .ng-select-container {
+        border-top-color: $white;
+        border-right-color: $white;
+        border-left-color: $white;
+
+        .ng-value-container {
+          padding: 0;
+        }
+      }
+    }
+
+    .ng-select-opened {
+      .ng-select-container {
+        border-color: $grey-primary;
+      }
+    }
+
+    .ng-arrow-zone {
+      text-align: right;
+    }
+  }
+
+  .ng-select {
+    height: 100%;
+
+
+    // Error styling
+    &.ng-invalid.ng-touched {
+      &:invalid {
+        box-shadow: none; // Disabled default red border
+      }
+
+      .ng-select-container, .ng-dropdown-panel {
+        border: 1px solid $loj-red;
+      }
+    }
+
+    // Override default arrow styling.
+    .ng-arrow, .ng-arrow:hover {
+      border-color: $grey-secondary transparent transparent;
+      border-style: solid;
+      border-width: 6px 6px 1px;
+      top: 0;
+    }
+
+    // The UL
+    .ng-dropdown-panel {
+      border-radius: 0;
+      border: 1px solid $grey-primary;
+      padding: 0;
+      margin-top: -1px;
+      .ng-dropdown-panel-items {
+        margin-bottom: 0;
+      }
+    }
+
+    .ng-select-container {
+      border: 1px solid $grey-secondary; //ccc this used to be on the ng-control.
+      border-radius: 0;
+      height: 100%;
+      min-height: 100%;
+      width: 100%;
+      padding: 0 10px;
+      cursor: pointer;
+      color: $grey-primary;
+      align-items: center;
+
+      &:hover {
+        box-shadow: none;
+        -webkit-box-shadow: none;
+      }
+
+      .ng-placeholder {
+        color: $grey-primary;
+      }
+
+      .ng-input {
+        padding-right: 24px;
+
+        // Make the input show a hand by default
+        > input {
+          cursor: pointer;
+        }
+      }
+    }
+
+    &.loj-selected {
+      .ng-placeholder {
+        display: none;
+      }
+    }
+
+    &.searchable {
+      .ng-input {
+        display: block
+      }
+      .ng-input > input {
+        // Use auto if you want the text cursor or default for the arrow
+        cursor: auto;
+      }
+    }
+  }
+
+  // Override default border styling when focuses or open
+  .ng-select-focused, .ng-select-opened {
+    >.ng-select-container{
+      outline: none;
+      border-radius: 0;
+      border-color: $grey-primary;
+      box-shadow: none;
+      -webkit-box-shadow: none;
+    }
+
+    // Change the arrow color and make sure it doesn't change colors when being hovered
+    .ng-arrow, .ng-arrow:hover {
+      border-color: $grey-primary transparent transparent;
+    }
+  }
+
+  // Individual List Items
+  .ng-option {
+    width: 100%;
+    background-color: $white;
+    color: $black;
+    white-space: nowrap;
+    padding: 6px; // Matches an input with a 36px height
+    padding-left: 10px;
+
+    &:last-child {
+      border-radius: 0;
+    }
+
+    &.disabled {
+      color: $black;
+    }
+
+    // Currently selected option
+    &.selected {
+      color: $black;
+      background-color: $white;
+      > .ng-option-label {
+        font-weight: normal;
+      }
+    }
+  }
+
+  //Used for both hover styling and keyboard navigation (i.e. up and down arrow selection)
+  .ng-option-marked {
+    // No styling on mobile.
+    background: $white;
+
+    @media #{$medium} {
+      background: $loj-blue;
+      color: $white;
+      > .ng-option-label {
+        //font-weight: bold;
+      }
+    }
+  }
+
+  // Input when [searchable] is enabled. Test this on iOS if you make changes.
+  input {
+    padding: 0;
+    &:focus {
+      outline: none;
+      box-shadow: none;
+      -webkit-box-shadow: none;
+    }
+  }
+
+  ///////////////////// Non-searchable drop-down styles below this line \\\\\\\\\\\\\\\\\\\\\\
+  // On mobile, remove the input element for non-searchable drop-downs. This dramatically improves the drop-down speed.
+  // A side effect is that it disables keyboard input and focus, so it shouldn't be used on desktop
+  @media #{$mobile-only} {
+    .ng-input {
+      display: none;
+    }
+  }
+
+  // Remove input on MS Edge (non-searchable drop-down only)
+  // Good: Fixes blinking cursor bug
+  // Bad: The input
+  @supports (-ms-ime-align:auto)  {
+    .ng-input {
+      display: none;
+    }
+  }
+
+  // Remove input in IE 10 and 11 (non-searchable drop-down only)
+  // Good: Fixes blinking cursor bug
+  // Bad: The input
+  @media all and (-ms-high-contrast: none), (-ms-high-contrast: active) {
+    .ng-input {
+      display: none;
+    }
+  }
+}
+
+
+// Styles common to all perspectives (or anywhere a date-type drop-down is used
+.loj-form.drop-down {
+  //position: absolute;
+  position: relative;
+  top: 12px; // Redline is 18px
+  left: 24px;
+  z-index: 1;
+  display: none;
+  @media #{$medium} {
+    display: block;
+  }
+}
+
+.date-type-drop-down {
+  height: 28px;
+  position: relative;
+  width: 174px;
+  font-size: $font-size-12;
+}
+

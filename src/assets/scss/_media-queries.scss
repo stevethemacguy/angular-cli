@@ -1,0 +1,50 @@
+/**
+ * Author: Steven Dunn
+ * Date Created: August 15, 2017
+ *
+ * Custom Media Queries
+ */
+
+//// Lojistic Global Foundation Breakpoints. Used by Foundation's Flex Grid.
+// DO NOT MODIFY
+$foundation-small: 0;
+$foundation-medium: 640px;
+$foundation-large: 1024px;
+$foundation-xlarge: 1200px;
+$foundation-xxlarge: 1440px;
+
+//// Foundation Media Queries.
+// Use when you want to match Lojistic's global (i.e Foundation) breakpoints, but don't want to use Foundation's Grid.
+// These can be read as "small and wider", "medium and wider", etc
+$small: "only screen and (min-width: #{$foundation-small})";      // Same as no media query.
+$medium: "only screen and (min-width: #{$foundation-medium})";
+$large: "only screen and (min-width: #{$foundation-large})";
+$xlarge: "only screen and (min-width: #{$foundation-xlarge})";
+$xxlarge: "only screen and (min-width: #{$foundation-xxlarge})";
+
+// In general, do NOT use $mobile-only (or any media query) when targeting small viewports.
+// $mobile-only should only be used in a very small set of special scenarios.
+$mobile-only: "only screen and (max-width: #{$foundation-medium - 1})";
+
+// Example Use
+// Larger breakpoints MUST come after smaller ones.
+/*
+  .some-class {
+    // No Media Query required for small widths
+
+    @media #{$medium} {
+      background: green;  // At medium widths and wider, change the background color
+    }
+
+    @media #{$large} {
+      background: red;   // At large widths and wider, change the color to something else
+    }
+
+    @media #{$xlarge} {
+      order: 2;         // At xlarge widths, re-order this flex-item
+    }
+    @media #{$xxlarge} {
+      padding: 50px;    // At xxlarge widths, Add some padding.
+    }
+  }
+*/
