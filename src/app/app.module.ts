@@ -4,6 +4,7 @@ import { AppComponent } from './app.component';
 import { VendorTestingComponent } from './vendor-testing/vendor-testing.component';
 import { HomeComponent } from './home/home.component';
 import { AppRoutingModule } from './app-routing.module';
+import { NgbDatepickerModule, NgbModalModule, NgbPopoverModule } from '@ng-bootstrap/ng-bootstrap';
 import { HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ServiceWorkerModule } from '@angular/service-worker';
@@ -23,6 +24,9 @@ import { environment } from '../environments/environment';
     HttpClientModule,
     BrowserAnimationsModule,
     AppRoutingModule,
+    NgbDatepickerModule,
+    NgbModalModule,
+    NgbPopoverModule,
     ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production })
   ],
   // The providers array is for services that are required by the entire application.
