@@ -6,11 +6,13 @@ import { ForgotPasswordComponent } from './forgot-password/forgot-password.compo
 import { CreateAccountComponent } from './create-account/create-account.component';
 import { AccountRoutingModule } from './account-routing.module';
 import { AccountRoutingComponent } from './account-routing.component';
+import { NgbModalModule } from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
   imports: [
     CommonModule,
-    AccountRoutingModule
+    AccountRoutingModule,
+    NgbModalModule
   ],
   declarations: [AccountRoutingComponent, LoginComponent, CreateAccountComponent, ForgotPasswordComponent, ResendConfirmationComponent]
 })
