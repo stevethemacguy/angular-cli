@@ -7,9 +7,13 @@ import { HomeComponent } from './home/home.component';
 // import { PageNotFoundComponent } from './not-found.component';
 
 const appRoutes: Routes = [
+  {
+    path: 'account', loadChildren: './account/account.module#AccountModule',
+  },
   {path: 'vendor-testing', component: VendorTestingComponent},
   {path: 'home', component: HomeComponent},
   {path: '', redirectTo: '/home', pathMatch: 'full'},
+
 ];
 
 @NgModule({

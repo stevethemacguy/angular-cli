@@ -19,6 +19,9 @@ import { SubHeaderComponent } from './sub-header/sub-header.component';
     SideBarComponent,
     SideBarHeaderComponent,
     SubHeaderComponent
+  ],
+  exports: [
+    FooterComponent,
   ]
 })
 export class CoreModule { }
