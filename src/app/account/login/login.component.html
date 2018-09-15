@@ -1,3 +1,15 @@
 <p>
   The account module was lazy-loaded and the Login page is working.
 </p>
+<div class="nav-item" (click)="showAddCompanyModel(addCompanyModal)">Add A Company</div>
+<ng-template #addCompanyModal>
+  <div class="loj-modal-backdrop" (click)="closeAddCompanyModal()"></div>
+  <div class="add-company-modal loj-modal flex-center vertical above-footer">
+      <button type="submit" class="loj-btn">
+        <span>Add Company</span>
+      </button>
+      <div class="loj-btn-tertiary" (click)="closeAddCompanyModal()">
+        <span>Close</span>
+      </div>
+  </div>
+</ng-template>
