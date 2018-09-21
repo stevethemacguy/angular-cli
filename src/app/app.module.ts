@@ -26,8 +26,8 @@ import { CoreModule } from './core/core.module';
     BrowserAnimationsModule,
     AppRoutingModule,
     CoreModule,
-    //NgbDatepickerModule,
-    //NgbModalModule,
+    NgbDatepickerModule,
+    NgbModalModule,
     NgbPopoverModule,
     ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production })
   ],

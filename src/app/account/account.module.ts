@@ -7,12 +7,16 @@ import { CreateAccountComponent } from './create-account/create-account.componen
 import { AccountRoutingModule } from './account-routing.module';
 import { AccountRoutingComponent } from './account-routing.component';
 import { NgbModalModule } from '@ng-bootstrap/ng-bootstrap';
+import { NgSelectModule } from '@ng-select/ng-select';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   imports: [
     CommonModule,
+    FormsModule,
+    NgbModalModule,
+    NgSelectModule,
     AccountRoutingModule,
-    NgbModalModule
   ],
   declarations: [AccountRoutingComponent, LoginComponent, CreateAccountComponent, ForgotPasswordComponent, ResendConfirmationComponent]
 })

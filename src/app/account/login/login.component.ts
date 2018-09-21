@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
-
+//import { catchError, filter, finalize, map, switchMap, take, tap } from 'rxjs/operators';
+//import { BehaviorSubject, Subscription, EMPTY, throwError, of as observableOf, Observable, of} from 'rxjs';
 
 @Component({
   selector: 'app-login',
@@ -10,10 +11,24 @@ import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 export class LoginComponent implements OnInit {
 
   addCompanyModal: NgbModalRef;
+  // Ng-Select elements
+  carriers: any[];
+  selectedCarrier: string;
+  selectedCarriers = 'UPS, Fedex, DHL';
 
   constructor(private modalService: NgbModal) { }
 
   ngOnInit() {
+    this.carriers = [];
+
+    // this.ranges.push({label: 'Preset Date', value: null});
+    this.carriers.push({label: 'UPS', value: 'ups'});
+    this.carriers.push({label: 'FedEx', value: 'fedex'});
+
+    this.selectedCarrier = ''; // Use 'ups' to select something by default
+
+    // See "Change Detection" section at https://github.com/ng-select/ng-select
+    this.carriers = [...this.carriers];
   }
 
   showAddCompanyModel(content: any) {

@@ -2,6 +2,9 @@
   The account module was lazy-loaded and the Login page is working.
 </p>
 <div class="nav-item" (click)="showAddCompanyModel(addCompanyModal)">Add A Company</div>
+<ng-select [items]="carriers" placeholder="Select Carrier" name="selectedCarrier" [searchable]="false" [clearable]="false"
+           [(ngModel)]="selectedCarrier" [markFirst]="false" bindValue="value" bindLabel="label" labelForId="selectedCarrier">
+</ng-select>
 <ng-template #addCompanyModal>
   <div class="loj-modal-backdrop" (click)="closeAddCompanyModal()"></div>
   <div class="add-company-modal loj-modal flex-center vertical above-footer">
