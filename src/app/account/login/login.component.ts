@@ -1,15 +1,31 @@
 import { Component, OnInit } from '@angular/core';
 import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
+import { animate, state, style, transition, trigger } from '@angular/animations';
+
 //import { catchError, filter, finalize, map, switchMap, take, tap } from 'rxjs/operators';
 //import { BehaviorSubject, Subscription, EMPTY, throwError, of as observableOf, Observable, of} from 'rxjs';
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
+  animations: [
+    trigger('toggleModel', [
+      state('closed', style({
+        opacity: 0
+      })),
+      state('open',   style({
+        opacity: 1
+      })),
+      transition('closed <=> open', animate('400ms ease-in')),
+    ])
+  ],
   styleUrls: ['./login.component.scss']
 })
+
 export class LoginComponent implements OnInit {
 
+  // Whether the modal is open or closed
+  modalState = 'closed';
   addCompanyModal: NgbModalRef;
   // Ng-Select elements
   carriers: any[];
