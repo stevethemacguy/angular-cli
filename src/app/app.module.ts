@@ -26,6 +26,8 @@ import { CoreModule } from './core/core.module';
     BrowserAnimationsModule,
     AppRoutingModule,
     CoreModule,
+    //NgbAccordionModule, // To test bootstrap bundle size
+    //NgbTooltipModule, // To test bootstrap bundle size
     NgbDatepickerModule,
     NgbModalModule,
     NgbPopoverModule,
