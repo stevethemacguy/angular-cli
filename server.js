@@ -37,7 +37,7 @@ app.get('/*', function(req, res) {
 // This allows you to access the server from either localhost or your external IP address (at the same time)
 //  localhost:8080
 //  http://192.168.1.234:8080
-app.set('port', (process.env.PORT || 8080));
+app.set('port', (process.env.PORT || 9000));
 
 app.listen(app.get('port'), function() {
   console.log('Listening on port', app.get('port'));
