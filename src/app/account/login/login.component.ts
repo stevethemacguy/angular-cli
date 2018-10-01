@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
+import { NgbDateStruct, NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 import { animate, state, style, transition, trigger } from '@angular/animations';
 
 //import { catchError, filter, finalize, map, switchMap, take, tap } from 'rxjs/operators';
@@ -31,6 +31,10 @@ export class LoginComponent implements OnInit {
   carriers: any[];
   selectedCarrier: string;
   selectedCarriers = 'UPS, Fedex, DHL';
+
+  // To use the calendar
+  model: NgbDateStruct;
+  date: {year: number, month: number};
 
   constructor(private modalService: NgbModal) { }
 

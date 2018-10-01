@@ -6,7 +6,7 @@ import { ForgotPasswordComponent } from './forgot-password/forgot-password.compo
 import { CreateAccountComponent } from './create-account/create-account.component';
 import { AccountRoutingModule } from './account-routing.module';
 import { AccountRoutingComponent } from './account-routing.component';
-import { NgbModalModule } from '@ng-bootstrap/ng-bootstrap';
+import { NgbDatepickerModule, NgbModalModule } from '@ng-bootstrap/ng-bootstrap';
 import { NgSelectModule } from '@ng-select/ng-select';
 import { FormsModule } from '@angular/forms';
 
@@ -15,6 +15,7 @@ import { FormsModule } from '@angular/forms';
     CommonModule,
     FormsModule,
     NgbModalModule,
+    NgbDatepickerModule,
     NgSelectModule,
     AccountRoutingModule,
   ],
