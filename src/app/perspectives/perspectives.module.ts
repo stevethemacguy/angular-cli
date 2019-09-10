@@ -5,11 +5,12 @@ import { SurchargeImpactPerspectiveComponent } from './surcharge-impact-perspect
 import { CostReductionDashboardComponent } from './cost-reduction-dashboard/cost-reduction-dashboard.component';
 import { TransportationDashboardComponent } from './transportation-dashboard/transportation-dashboard.component';
 import { ServiceLevelDashboardComponent } from './service-level-dashboard/service-level-dashboard.component';
+import { ChartHeaderComponent } from './chart-header/chart-header.component';
 
 @NgModule({
   imports: [
     SharedModule
   ],
-  declarations: [ServiceLevelDashboardComponent, CostReductionDashboardComponent, TransportationDashboardComponent, PotentialAuditRecoveryComponent, SurchargeImpactPerspectiveComponent]
+  declarations: [ServiceLevelDashboardComponent, CostReductionDashboardComponent, TransportationDashboardComponent, PotentialAuditRecoveryComponent, SurchargeImpactPerspectiveComponent, ChartHeaderComponent]
 })
 export class PerspectivesModule { }
