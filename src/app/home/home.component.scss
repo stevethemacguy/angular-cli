@@ -15,13 +15,15 @@
   left: 0;
   top: 0;
 }
-/deep/ .popover-body {
+
+::ng-deep .popover-body {
   position: absolute;
   left: 150px;
   height: 100px;
   width: 100px;
   border: 1px solid green;
 }
+
 .home-page-panel {
   list-style: none;
   padding: 0;
