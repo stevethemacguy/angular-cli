@@ -11,6 +11,7 @@ import { ServiceWorkerModule } from '@angular/service-worker';
 import { environment } from '../environments/environment';
 import { CoreModule } from './core/core.module';
 import { NoDataModalComponent } from './no-data-modal/no-data-modal.component';
+import { FedexBillingOverlayComponent } from './fedex-billing-overlay/fedex-billing-overlay.component';
 
 @NgModule({
   // When you create new components, directives, and pipes in this module, put them in the declarations array.
@@ -19,7 +20,8 @@ import { NoDataModalComponent } from './no-data-modal/no-data-modal.component';
     AppComponent,
     VendorTestingComponent,
     HomeComponent,
-    NoDataModalComponent
+    NoDataModalComponent,
+    FedexBillingOverlayComponent
   ],
   // Only NgModule classes go in the imports array. Do not put any other kind of class in imports.
   imports: [
