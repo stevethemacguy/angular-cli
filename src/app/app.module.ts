@@ -13,6 +13,10 @@ import { CoreModule } from './core/core.module';
 import { NoDataModalComponent } from './no-data-modal/no-data-modal.component';
 import { FedexBillingOverlayComponent } from './fedex-billing-overlay/fedex-billing-overlay.component';
 import { AuditTrialCompletedModalComponent } from './audit-trial-completed-modal/audit-trial-completed-modal.component';
+import { BetterRatesModalComponent } from './better-rates-modal/better-rates-modal.component';
+import { AuditTrialSuccessModalComponent } from './audit-trial-success-modal/audit-trial-success-modal.component';
+import { AuditTrialActiveModalComponent } from './audit-trial-active-modal/audit-trial-active-modal.component';
+import { GetThisMoneyModalComponent } from './get-this-money-modal/get-this-money-modal.component';
 
 @NgModule({
   // When you create new components, directives, and pipes in this module, put them in the declarations array.
@@ -23,7 +27,11 @@ import { AuditTrialCompletedModalComponent } from './audit-trial-completed-modal
     HomeComponent,
     NoDataModalComponent,
     FedexBillingOverlayComponent,
-    AuditTrialCompletedModalComponent
+    AuditTrialCompletedModalComponent,
+    BetterRatesModalComponent,
+    AuditTrialSuccessModalComponent,
+    AuditTrialActiveModalComponent,
+    GetThisMoneyModalComponent
   ],
   // Only NgModule classes go in the imports array. Do not put any other kind of class in imports.
   imports: [
