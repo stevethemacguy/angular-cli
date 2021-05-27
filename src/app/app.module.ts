@@ -12,6 +12,7 @@ import { environment } from '../environments/environment';
 import { CoreModule } from './core/core.module';
 import { NoDataModalComponent } from './no-data-modal/no-data-modal.component';
 import { FedexBillingOverlayComponent } from './fedex-billing-overlay/fedex-billing-overlay.component';
+import { AuditTrialCompletedModalComponent } from './audit-trial-completed-modal/audit-trial-completed-modal.component';
 
 @NgModule({
   // When you create new components, directives, and pipes in this module, put them in the declarations array.
@@ -21,7 +22,8 @@ import { FedexBillingOverlayComponent } from './fedex-billing-overlay/fedex-bill
     VendorTestingComponent,
     HomeComponent,
     NoDataModalComponent,
-    FedexBillingOverlayComponent
+    FedexBillingOverlayComponent,
+    AuditTrialCompletedModalComponent
   ],
   // Only NgModule classes go in the imports array. Do not put any other kind of class in imports.
   imports: [
