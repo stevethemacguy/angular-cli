@@ -18,6 +18,7 @@ import { AuditTrialSuccessModalComponent } from './audit-trial-success-modal/aud
 import { AuditTrialActiveModalComponent } from './audit-trial-active-modal/audit-trial-active-modal.component';
 import { GetThisMoneyModalComponent } from './get-this-money-modal/get-this-money-modal.component';
 import { PageNotFoundComponentComponent } from './page-not-found-component/page-not-found-component.component';
+import { ApiKeysComponent } from './api-keys/api-keys.component';
 
 @NgModule({
   // When you create new components, directives, and pipes in this module, put them in the declarations array.
@@ -33,7 +34,8 @@ import { PageNotFoundComponentComponent } from './page-not-found-component/page-
     AuditTrialSuccessModalComponent,
     AuditTrialActiveModalComponent,
     GetThisMoneyModalComponent,
-    PageNotFoundComponentComponent
+    PageNotFoundComponentComponent,
+    ApiKeysComponent
   ],
   // Only NgModule classes go in the imports array. Do not put any other kind of class in imports.
   imports: [
