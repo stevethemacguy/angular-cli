@@ -3,113 +3,37 @@
   // The rules below extend TSLint's recommended rules.
   // https://github.com/palantir/tslint/blob/master/src/configs/recommended.ts
   "extends": [
-    "tslint:recommended"
+    "tslint:recommended",
+    "airbnb-base"
   ],
   // Any rules in jsRules ad rules will override those from the base config we are extending.
   // See https://palantir.github.io/tslint/rules/
   "jsRules": {},
   "rules": {
-    "arrow-parens": false,
-    "class-name": true,
-    "comment-format": [
-      false,
-      "check-space"
-    ],
-    "curly": true,
-    "eofline": true,
-    "forin": true,
-    "indent": [
-      true,
-      "spaces"
-    ],
-    "label-position": true,
-    "label-undefined": true,
-    "max-classes-per-file": [true, 2],
-    "max-line-length": [
-      false,
-      140
-    ],
-    "member-access": false,
-    "member-ordering": [
-      true,
-      "static-before-instance",
-      "variables-before-functions"
-    ],
-    "no-arg": true,
-    "no-bitwise": true,
-    "no-console": [
-      true,
-      "debug",
-      "info",
-      "time",
-      "timeEnd",
-      "trace"
-    ],
-    "no-construct": true,
-    "no-conditional-assignment": true,
-    "no-debugger": true,
-    "no-duplicate-key": true,
-    "no-duplicate-variable": true,
-    "no-empty": false,
-    "no-eval": true,
-    "no-inferrable-types": true,
-    "no-shadowed-variable": true,
-    "no-string-literal": false,
-    "no-switch-case-fall-through": true,
-    "no-trailing-whitespace": false,
-    "no-unused-expression": true,
-    "no-unused-variable": true,
-    "no-unreachable": true,
-    "no-use-before-declare": true,
-    "no-var-keyword": true,
-    "object-literal-sort-keys": false,
-    "one-line": [
-      true,
-      "check-open-brace",
-      "check-catch",
-      //"check-else", // Allow for if/else on a second line, but require open brackets on the same line (i.e. stroustrup style)
-      "check-whitespace"
-    ],
-    "ordered-imports": false,
-    "prefer-const": false,
-    "prefer-for-of": false,
-    "quotemark": [
-      true,
-      "single",
-      "avoid-escape"
-    ],
-    "rxjs-no-add": { "severity": "error" }, // See https://blog.angularindepth.com/rxjs-understanding-lettable-operators-fe74dda186d3
-    "rxjs-no-operator": { "severity": "error" }, // See https://blog.angularindepth.com/rxjs-understanding-lettable-operators-fe74dda186d3
-    "rxjs-no-patched": { "severity": "error" }, // See https://blog.angularindepth.com/rxjs-understanding-lettable-operators-fe74dda186d3
-    "rxjs-no-wholesale": { "severity": "error" }, // See https://blog.angularindepth.com/rxjs-understanding-lettable-operators-fe74dda186d3
-    "radix": true,
-    "semicolon": [
-      "always"
-    ],
-    "trailing-comma": false,
-    "triple-equals": [
-      true,
-      "allow-null-check"
-    ],
-    "typedef-whitespace": [
-      true,
-      {
-        "call-signature": "nospace",
-        "index-signature": "nospace",
-        "parameter": "nospace",
-        "property-declaration": "nospace",
-        "variable-declaration": "nospace"
-      }
-    ],
-    "variable-name": false,
-    "whitespace": [
-      true,
-      "check-branch",
-      "check-decl",
-      "check-operator",
-      "check-separator",
-      "check-type"
-    ]
+    "no-multiple-empty-lines":["warn", {
+      "max": 1
+    }],
+    "comma-dangle": "off",
+    "max-len": ["warn", 182],
+    "spaced-comment": "off",
+    "object-curly-spacing": "off", // We usually want spaces after braces, but it doesn't need to be enforced for config files
+    "quote-props": "off", // Todo: Consider other options
+    "quotes": ["warn","single"],
+    "vars-on-top": "off", // Vars are not allowed, so this rule doesn't apply
+    "import/no-extraneous-dependencies": "off", // Allow for require statements in Webpack config files, since it's common practice
+    "no-useless-escape": "off", // Webpack configs require escaping in test conditions
+    "prefer-spread": "off", // Too opinionated.
+    "prefer-rest-params": "off", // Too opinionated
+    "prefer-destructuring": "off", // Too opinionated
+    "prefer-template": "off", // Todo: We may want to leave this enabled and refactor our Webpack config files.
+    "no-path-concat": "off", // Too opinionated
+    "no-underscore-dangle": "off", // Too opinionated
+    "no-floating-decimal": "off", // Too opinionated
+    "no-multi-spaces": ["warn", { "ignoreEOLComments": true}],
+    "no-trailing-spaces": ["warn", { "ignoreComments": true }], // Allow trailing spacings in comments, since they'll be removed anyway.
+    "import/order": "off", // Too opinionated
+    "no-unused-vars": "off", // Useful, but a little too strict. Someones components may have vars that appear on used, but are used by the template
+    "no-param-reassign": "off" // Use in our webpack configs. Todo: Consider refactoring so we can leave this enabled.
   },
   // A list of relative or absolute paths to directories that contain custom rules.
   "rulesDirectory": []
