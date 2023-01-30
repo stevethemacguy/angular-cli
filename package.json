@@ -57,8 +57,7 @@
     "karma-jasmine": "^1.1.1",
     "karma-jasmine-html-reporter": "^0.2.2",
     "tslint": "^5.9.1",
-    "tslint-eslint-rules": "^5.4.0",
-    "typescript": "^3.9.7",
+    "typescript": "4.0",
     "webpack-bundle-analyzer": "^2.13.1"
   }
 }
