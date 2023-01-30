@@ -4,9 +4,14 @@
   // https://github.com/palantir/tslint/blob/master/src/configs/recommended.ts
   "extends": [
     "tslint:recommended",
-    "airbnb-base"
+    "tslint-eslint-rules"
   ],
-  // Any rules in jsRules ad rules will override those from the base config we are extending.
+  "linterOptions": {
+    "exclude": [
+      "node_modules/"
+    ]
+  },
+  // Any rules in jsRules ad rules will override those from the base config we are extending.
   // See https://palantir.github.io/tslint/rules/
   "jsRules": {},
   "rules": {
@@ -35,6 +40,6 @@
     "no-unused-vars": "off", // Useful, but a little too strict. Someones components may have vars that appear on used, but are used by the template
     "no-param-reassign": "off" // Use in our webpack configs. Todo: Consider refactoring so we can leave this enabled.
   },
-  // A list of relative or absolute paths to directories that contain custom rules.
+  // A list of relative or absolute paths to directories that contain custom rules.
   "rulesDirectory": []
 }
