@@ -8,7 +8,7 @@ import { HomeComponent } from './home/home.component';
 
 const appRoutes: Routes = [
   {
-    path: 'account', loadChildren: './account/account.module#AccountModule',
+    path: 'account', loadChildren: () => import(/* webpackChunkName: "account" */ './account/account.module').then(m => m.AccountModule),
   },
   {path: 'vendor-testing', component: VendorTestingComponent},
   {path: 'home', component: HomeComponent},
