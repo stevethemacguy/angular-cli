@@ -6,8 +6,14 @@
     "module": "es2020",
     "types": []
   },
-  "exclude": [
-    "test.ts",
-    "**/*.spec.ts"
+  "files": [
+    "polyfills.ts",
+    //"vendor.ts", // No longer used
+    "main.ts",
+    // REQUIRED. WP will warn that custom-types is 'unused', but without it, the prod build will throw 'Cannot find module X or its corresponding type declarations' for all SVGs
+    //"custom-types.ts"
+  ],
+  "include": [
+    "../src/**/*.d.ts"
   ]
 }
