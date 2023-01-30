@@ -1,4 +1,4 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 
 import { WhichCarrierStepComponent } from './which-carrier-step.component';
 
@@ -6,7 +6,7 @@ describe('WhichCarrierStepComponent', () => {
   let component: WhichCarrierStepComponent;
   let fixture: ComponentFixture<WhichCarrierStepComponent>;
 
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       declarations: [ WhichCarrierStepComponent ]
     })

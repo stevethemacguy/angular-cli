@@ -1,4 +1,4 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 
 import { FedexBillingOverlayComponent } from './fedex-billing-overlay.component';
 
@@ -6,7 +6,7 @@ describe('FedexBillingOverlayComponent', () => {
   let component: FedexBillingOverlayComponent;
   let fixture: ComponentFixture<FedexBillingOverlayComponent>;
 
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       declarations: [ FedexBillingOverlayComponent ]
     })

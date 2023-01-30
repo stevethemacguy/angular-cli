@@ -1,4 +1,4 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 
 import { ImageResizerComponent } from './image-resizer.component';
 
@@ -6,7 +6,7 @@ describe('ImageResizerComponent', () => {
   let component: ImageResizerComponent;
   let fixture: ComponentFixture<ImageResizerComponent>;
 
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       declarations: [ ImageResizerComponent ]
     })

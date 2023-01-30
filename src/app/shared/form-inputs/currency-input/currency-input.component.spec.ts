@@ -1,4 +1,4 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 
 import { CurrencyInputComponent } from './currency-input.component';
 
@@ -6,7 +6,7 @@ describe('CurrencyInputComponent', () => {
   let component: CurrencyInputComponent;
   let fixture: ComponentFixture<CurrencyInputComponent>;
 
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       declarations: [ CurrencyInputComponent ]
     })

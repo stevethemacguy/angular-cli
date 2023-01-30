@@ -1,4 +1,4 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 
 import { ServiceLevelDashboardComponent } from './service-level-dashboard.component';
 
@@ -6,7 +6,7 @@ describe('ServiceLevelDashboardComponent', () => {
   let component: ServiceLevelDashboardComponent;
   let fixture: ComponentFixture<ServiceLevelDashboardComponent>;
 
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       declarations: [ ServiceLevelDashboardComponent ]
     })

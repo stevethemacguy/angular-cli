@@ -1,4 +1,4 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 
 import { PreviouslyConnectedLaunchComponent } from './previously-connected-launch.component';
 
@@ -6,7 +6,7 @@ describe('PreviouslyConnectedLaunchComponent', () => {
   let component: PreviouslyConnectedLaunchComponent;
   let fixture: ComponentFixture<PreviouslyConnectedLaunchComponent>;
 
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       declarations: [ PreviouslyConnectedLaunchComponent ]
     })

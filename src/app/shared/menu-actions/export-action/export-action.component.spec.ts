@@ -1,4 +1,4 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 
 import { ExportActionComponent } from './export-action.component';
 
@@ -6,7 +6,7 @@ describe('ExportActionComponent', () => {
   let component: ExportActionComponent;
   let fixture: ComponentFixture<ExportActionComponent>;
 
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       declarations: [ ExportActionComponent ]
     })
