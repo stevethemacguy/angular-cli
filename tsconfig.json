@@ -9,9 +9,7 @@
     "moduleResolution": "node",
     "importHelpers": true,
     "emitDecoratorMetadata": true,
-    // Use "es2015" to enable differential loading, which builds a separate bundle for es5.
-    // Using "es5" will also work in IE, but differential loading is probably the preferred method.
-    "target": "es2020",
+    "target": "ES2022",
     "module": "es2020",
     "typeRoots": [
       "node_modules/@types"
@@ -19,6 +17,7 @@
     "lib": [
       "es2018",
       "dom"
-    ]
+    ],
+    "useDefineForClassFields": false
   }
 }
