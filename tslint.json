@@ -8,7 +8,7 @@
     // The rules below extend TSLint's recommended rules.
     // https://github.com/palantir/tslint/blob/master/src/configs/recommended.ts
     "extends": [
-      "tslint:recommended",
+      "tslint:recommended"
       //"rxjs-tslint-rules", // Removed because rxjs-tslint-rules doesn't support RXJS 7, and we need to migrate to ESLint eventually anyway.
       //"tslint-eslint-rules"
     ],
